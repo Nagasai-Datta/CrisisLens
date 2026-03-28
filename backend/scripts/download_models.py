@@ -60,7 +60,7 @@ def download_all_models():
         
         # Quick sanity check — encode a test sentence
         test_embedding = model.encode(["test sentence"])
-        assert test_embedding.shape[1] == 384, "MiniLM should produce 384-dim vectors"
+        assert test_embedding.shape[1] == 384, "MiniLM should produce 384-dim vectors" # type: ignore
         
         print("   ✅ MiniLM downloaded and verified (384-dim embeddings)")
         del model  # free memory
@@ -81,7 +81,7 @@ def download_all_models():
         
         # Quick sanity check — run NER on a test sentence
         test_result = ner("Chennai is in Tamil Nadu")
-        print(f"   ✅ BERT NER downloaded and verified ({len(test_result)} entities found in test)")
+        print(f"   ✅ BERT NER downloaded and verified ({len(test_result)} entities found in test)") # type: ignore
         del ner  # free memory
     except Exception as e:
         print(f"   ❌ BERT NER download failed: {e}")
