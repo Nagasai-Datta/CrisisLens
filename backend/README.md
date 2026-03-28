@@ -194,7 +194,27 @@ MODERATE: score < 0.4
 
 ## Setup
 
-### 1. Install dependencies
+### Option A — Docker (recommended)
+
+The simplest way to run the backend. No manual venv activation needed.
+
+```bash
+# From the crisislens/ root folder
+
+docker compose up --build   # first time — builds image and installs packages
+docker compose up            # every subsequent run — fast, uses cache
+docker compose down          # stop the server
+```
+
+Backend runs at `http://localhost:8000`. Docker handles everything automatically.
+
+> **Note:** The one-time setup scripts (prepare_data, train_bouncer, populate_gazetteer, download_models) still need to be run manually with a local Python environment before starting Docker for the first time. They generate the `.pkl` model files and `chennai_gazetteer.json` that the server loads at startup.
+
+---
+
+### Option B — Manual (without Docker)
+
+#### 1. Install dependencies
 
 ```bash
 python3.11 -m venv venv
@@ -202,15 +222,15 @@ source venv/bin/activate
 pip install -r backend/requirements.txt
 ```
 
-### 2. Download ML models
+#### 2. Download ML models
 
 ```bash
 python backend/scripts/download_models.py
 ```
 
-This pre-caches MiniLM (~90MB) and BERT NER (~400MB) locally so the server never downloads at runtime.
+Pre-caches MiniLM (~90MB) and BERT NER (~400MB) locally so the server never downloads at runtime.
 
-### 3. Prepare training data
+#### 3. Prepare training data
 
 Download datasets first (see root README), then:
 
@@ -221,21 +241,21 @@ python backend/scripts/train_bouncer.py
 
 Verify F1 score ≥ 0.85 in the training output. Two `.pkl` files appear in `backend/models/`.
 
-### 4. Build the gazetteer
+#### 4. Build the gazetteer
 
 ```bash
 python backend/scripts/populate_gazetteer.py
 ```
 
-Takes ~8–10 minutes. Enforces 1.1s delay between Nominatim calls per their terms of service. Crash-safe: if interrupted, re-running resumes from where it stopped.
+Takes ~8–10 minutes. Enforces 1.1s delay between Nominatim calls per their terms of service. Crash-safe — re-running resumes from where it stopped.
 
-### 5. Configure environment
+#### 5. Configure environment
 
 ```bash
 echo "HF_API_TOKEN=hf_your_token_here" > backend/.env
 ```
 
-### 6. Start the server
+#### 6. Start the server
 
 ```bash
 uvicorn backend.api.main:app --reload --port 8000
@@ -262,7 +282,7 @@ Our minimum RAM requirement is ~1.1GB (TF-IDF + SVM + MiniLM + BERT + FastAPI ov
 
 1. Create a new Space at [huggingface.co/new-space](https://huggingface.co/new-space) with **Docker** SDK
 2. Add `HF_API_TOKEN` as a repository secret in Space Settings
-3. Add the `backend/` directory as a git remote:
+3. Push code to the Space:
    ```bash
    git remote add hfspace https://huggingface.co/spaces/USERNAME/crisislens-backend
    git push hfspace main
@@ -270,9 +290,13 @@ Our minimum RAM requirement is ~1.1GB (TF-IDF + SVM + MiniLM + BERT + FastAPI ov
 4. HuggingFace auto-builds from the `Dockerfile`. First build takes ~10 minutes.
 5. Models cache to `/data/.huggingface` (set via `HF_HOME` env var) — persistent across restarts.
 
+### Docker layer caching
+
+The `Dockerfile` copies `requirements.txt` and runs `pip install` before copying the application code. This means Docker caches the package installation layer — if you change Python files but not `requirements.txt`, redeployment skips pip install entirely and completes in seconds rather than minutes.
+
 ### Model caching note
 
-The `Dockerfile` sets `HF_HOME=/data/.huggingface`. On HuggingFace Spaces, `/data` is persistent storage. This means MiniLM and BERT download once on first boot and are cached forever — subsequent restarts take seconds not minutes.
+`HF_HOME=/data/.huggingface` is set in the Dockerfile. On HuggingFace Spaces, `/data` is persistent storage. MiniLM and BERT download once on first boot and are cached permanently — subsequent restarts load from disk in seconds.
 
 ---
 
@@ -289,12 +313,12 @@ The `Dockerfile` sets `HF_HOME=/data/.huggingface`. On HuggingFace Spaces, `/dat
 See `requirements.txt` for pinned versions. Key dependencies:
 
 ```
-fastapi==0.111.0          # Web framework
-uvicorn[standard]==0.29.0 # ASGI server
-scikit-learn==1.4.2       # TF-IDF + SVM
+fastapi==0.111.0              # Web framework
+uvicorn[standard]==0.29.0     # ASGI server
+scikit-learn==1.4.2           # TF-IDF + SVM
 sentence-transformers==3.0.0  # MiniLM embeddings
-transformers==4.41.0      # BERT NER
-torch==2.3.0              # PyTorch backend
-geopy==2.4.1              # Nominatim (setup only)
-python-dotenv==1.0.1      # .env file loading
+transformers==4.41.0          # BERT NER
+torch==2.3.0                  # PyTorch backend
+geopy==2.4.1                  # Nominatim (setup only)
+python-dotenv==1.0.1          # .env file loading
 ```

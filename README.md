@@ -55,17 +55,18 @@ Each stage is a self-contained Python module. Data flows in one direction only. 
 
 ## Technology Stack
 
-| Layer         | Technology                                       | Purpose                               |
-| ------------- | ------------------------------------------------ | ------------------------------------- |
-| Frontend      | React 18 + Vite                                  | War Room dashboard                    |
-| Maps          | react-leaflet + Leaflet.js                       | Tactical incident map                 |
-| Backend       | FastAPI + Uvicorn                                | API server and pipeline orchestration |
-| Noise Filter  | scikit-learn TF-IDF + LinearSVC                  | Sub-millisecond tweet classification  |
-| Deduplication | sentence-transformers MiniLM-L6-v2 + DBSCAN      | Semantic incident clustering          |
-| Location NER  | dslim/bert-base-NER (HuggingFace)                | Named entity extraction               |
-| Geocoding     | Custom Chennai Gazetteer JSON                    | Offline coordinate resolution         |
-| Summarisation | facebook/bart-large-cnn (HuggingFace API)        | Situation report generation           |
-| Deployment    | HuggingFace Spaces (backend) + Vercel (frontend) | Free cloud hosting                    |
+| Layer            | Technology                                       | Purpose                               |
+| ---------------- | ------------------------------------------------ | ------------------------------------- |
+| Frontend         | React 18 + Vite                                  | War Room dashboard                    |
+| Maps             | react-leaflet + Leaflet.js                       | Tactical incident map                 |
+| Backend          | FastAPI + Uvicorn                                | API server and pipeline orchestration |
+| Noise Filter     | scikit-learn TF-IDF + LinearSVC                  | Sub-millisecond tweet classification  |
+| Deduplication    | sentence-transformers MiniLM-L6-v2 + DBSCAN      | Semantic incident clustering          |
+| Location NER     | dslim/bert-base-NER (HuggingFace)                | Named entity extraction               |
+| Geocoding        | Custom Chennai Gazetteer JSON                    | Offline coordinate resolution         |
+| Summarisation    | facebook/bart-large-cnn (HuggingFace API)        | Situation report generation           |
+| Containerisation | Docker + Docker Compose                          | Local development and HF deployment   |
+| Deployment       | HuggingFace Spaces (backend) + Vercel (frontend) | Free cloud hosting                    |
 
 ---
 
@@ -104,6 +105,7 @@ crisislens/
 │   │   │   ├── TacticalMap     # Leaflet map with incident dots (Zone B)
 │   │   │   └── CommandersReport # BART summary display (Zone C)
 │   └── package.json
+├── docker-compose.yml          # Local development — one command startup
 └── README.md
 ```
 
@@ -115,6 +117,7 @@ crisislens/
 
 - Python 3.11
 - Node.js 18+
+- Docker + Docker Compose (recommended)
 - ~2GB disk space for ML models
 
 ### 1. Clone the repository
@@ -124,45 +127,37 @@ git clone https://github.com/YOUR_USERNAME/crisislens.git
 cd crisislens
 ```
 
-### 2. Set up the backend
+### 2. One-time setup (run these once, not on every startup)
 
-```bash
-# Create and activate virtual environment
-python3.11 -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
-
-# Install Python dependencies
-pip install -r backend/requirements.txt
-```
-
-### 3. Download ML models (run once)
-
-```bash
-python backend/scripts/download_models.py
-```
-
-### 4. Train the Bouncer (run once)
-
-You need the training datasets first:
+Download the training datasets:
 
 - **Kaggle Disaster Tweets**: Download `train.csv` from [kaggle.com/competitions/nlp-getting-started](https://kaggle.com/competitions/nlp-getting-started) → place in `backend/data/raw/kaggle/`
 - **CrisisLexT26**: Download from [crisislex.org](https://crisislex.org/data-collections.html) → place 26 event folders in `backend/data/raw/crisislex/`
 
+Then run the setup pipeline:
+
 ```bash
+# Activate Python environment
+python3.11 -m venv venv
+source venv/bin/activate
+
+# Install dependencies
+pip install -r backend/requirements.txt
+
+# Download and cache ML models locally
+python backend/scripts/download_models.py
+
 # Merge and clean both datasets
 python backend/scripts/prepare_data.py
 
-# Train TF-IDF + SVM classifier
+# Train TF-IDF + SVM classifier (target F1 ≥ 0.85)
 python backend/scripts/train_bouncer.py
-```
 
-### 5. Build the Chennai Gazetteer (run once, ~10 minutes)
-
-```bash
+# Build Chennai coordinate gazetteer (~10 minutes, crash-safe)
 python backend/scripts/populate_gazetteer.py
 ```
 
-### 6. Configure environment
+### 3. Configure environment
 
 Create `backend/.env`:
 
@@ -170,25 +165,44 @@ Create `backend/.env`:
 HF_API_TOKEN=hf_your_token_here
 ```
 
-Get your free token at [huggingface.co/settings/tokens](https://huggingface.co/settings/tokens).
+Get your free token at [huggingface.co/settings/tokens](https://huggingface.co/settings/tokens). Only the **Make calls to Inference Providers** permission is needed.
 
-### 7. Start the backend
+### 4. Start the backend
 
 ```bash
-uvicorn backend.api.main:app --reload --port 8000
+docker compose up
 ```
 
-Visit `http://localhost:8000/docs` to verify all models loaded.
+That's it. Docker handles everything — no manual venv activation, no uvicorn command. Backend runs at `http://localhost:8000`.
 
-### 8. Start the frontend
+First run takes a few minutes to build the image. Every subsequent run starts in seconds.
+
+> **Without Docker:** `source venv/bin/activate && uvicorn backend.api.main:app --reload --port 8000`
+
+### 5. Start the frontend
 
 ```bash
 cd frontend
-npm install
+npm install    # first time only
 npm run dev
 ```
 
 Visit `http://localhost:5173` to open the War Room.
+
+---
+
+## Daily Development Workflow
+
+```bash
+# Terminal 1 — start backend
+docker compose up
+
+# Terminal 2 — start frontend
+cd frontend && npm run dev
+
+# Stop backend when done
+docker compose down
+```
 
 ---
 

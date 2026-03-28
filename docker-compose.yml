@@ -1,0 +1,25 @@
+# NOTE:
+#   This is for local development only.
+#   HuggingFace uses the Dockerfile directly — not this file.
+#   The frontend is NOT included here because Vite's hot-reload
+#   works better run natively with npm run dev.
+# =============================================================================
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    ports:
+      - "8000:7860" # maps your localhost:8000 to container's port 7860
+    volumes:
+      - ./backend:/home/user/app/backend # live code reload — changes reflect instantly
+      - ./backend/data:/home/user/app/backend/data
+      - model_cache:/data/.huggingface # HuggingFace model cache persists between runs
+    env_file:
+      - backend/.env # loads HF_API_TOKEN from your .env file
+    environment:
+      - HF_HOME=/data/.huggingface
+
+volumes:
+  model_cache: # named volume — models download once, persist forever
