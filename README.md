@@ -1,3 +1,13 @@
+---
+title: CrisisLens Backend
+emoji: 🚨
+colorFrom: red
+colorTo: blue
+sdk: docker
+app_port: 7860
+pinned: false
+---
+
 # CrisisLens
 
 **Real-time crisis intelligence for natural disaster response.**
