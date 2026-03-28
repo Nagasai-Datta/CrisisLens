@@ -4,7 +4,6 @@ __pycache__/
 *.pyo
 *.pyd
 .env
-backend/models/*.pkl
 backend/data/raw/
 backend/data/processed/
 notebooks/
