@@ -1,0 +1,77 @@
+# =============================================================================
+
+# .dockerignore — CrisisLens Backend
+
+#
+
+# PURPOSE:
+
+# Tells Docker which files to SKIP when building the image.
+
+# Without this, Docker copies EVERYTHING — frontend code, .git history,
+
+# venv, notebooks — bloating the image by hundreds of MB for no reason.
+
+#
+
+# WHY THIS MATTERS ON HUGGINGFACE SPACES:
+
+# HF Spaces free tier has disk limits. Every MB counts.
+
+# The frontend is deployed separately on Vercel — it has no business
+
+# being inside the backend Docker image.
+
+# =============================================================================
+
+# ── Frontend (deployed separately on Vercel) ──────────────────────
+
+frontend/
+
+# ── Git history (can be huge) ─────────────────────────────────────
+
+.git/
+.gitignore
+
+# ── Python virtual environment (rebuilt inside Docker) ────────────
+
+venv/
+.venv/
+
+# ── Jupyter scratchpad (not needed in production) ─────────────────
+
+notebooks/
+
+# ── Python bytecode cache ─────────────────────────────────────────
+
+**pycache**/
+_.pyc
+_.pyo
+\*.pyd
+
+# ── Environment files (secrets set via HF Space settings) ─────────
+
+.env
+backend/.env
+
+# ── OS junk ───────────────────────────────────────────────────────
+
+.DS_Store
+\*.log
+Thumbs.db
+
+# ── Docker files (no need to copy Dockerfile into itself) ─────────
+
+Dockerfile
+docker-compose.yml
+
+# ── Raw training data (not needed at runtime — only .pkl models) ──
+
+backend/data/raw/
+backend/data/processed/
+
+# ── Documentation ─────────────────────────────────────────────────
+
+\*.md
+README.md
+backend/README.md

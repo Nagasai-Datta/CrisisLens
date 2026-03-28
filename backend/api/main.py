@@ -33,13 +33,19 @@
 #   The old way (importing active_clusters directly) captured the empty list
 #   at import time and never saw updates — editor always saw 0 clusters.
 #
-# CORS EXPLAINED:
-#   React runs on localhost:5173 (Vite).
-#   FastAPI runs on localhost:8000.
-#   Without CORS config, the browser blocks React from calling FastAPI.
-#   With CORS config: FastAPI says "I allow requests from :5173" → works.
+# CORS FIX:
+#   FastAPI's CORSMiddleware does NOT support wildcard subdomain patterns.
+#   "https://*.vercel.app" is treated as a LITERAL string — not a pattern.
+#   The browser sends Origin: "https://crisislens.vercel.app" which doesn't
+#   match the literal "https://*.vercel.app", so CORS blocks the request.
+#
+#   Fix: Read the exact Vercel URL from FRONTEND_URL environment variable.
+#   This is set in HuggingFace Space settings (not hardcoded in code).
+#   Keeps secrets out of the repo, and different environments can use
+#   different frontend URLs without code changes.
 # =============================================================================
 
+import os
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -114,8 +120,8 @@ async def lifespan(app: FastAPI):
         print(f"   {icon} {component}: {status}")
 
     print("\n   CrisisLens is running.")
-    print(f"   API docs: http://localhost:8000/docs")
-    print(f"   Health:   http://localhost:8000/api/health")
+    print(f"   API docs: http://localhost:7860/docs")
+    print(f"   Health:   http://localhost:7860/api/health")
     print("=" * 50)
 
     # ── Start Editor Background Task ──────────────────────────────────
@@ -124,11 +130,11 @@ async def lifespan(app: FastAPI):
     # Both use the module object so they always see current state,
     # not a snapshot captured at import time.
     asyncio.create_task(
-    editor.run_editor_loop(
-        get_clusters_fn  = pipeline_module.get_active_clusters,
-        update_report_fn = pipeline_module.set_report
+        editor.run_editor_loop(
+            get_clusters_fn  = pipeline_module.get_active_clusters,
+            update_report_fn = pipeline_module.set_report
+        )
     )
-)
     print("   ✅ Editor background task started (runs every 5 minutes)")
 
     yield  # Server runs here — handles all requests until shutdown
@@ -151,16 +157,54 @@ app = FastAPI(
 
 # =============================================================================
 # SECTION 3 — CORS CONFIGURATION
+#
+# WHAT IS CORS:
+#   React runs on one domain (e.g. crisislens.vercel.app).
+#   FastAPI runs on another (e.g. nagasaidatta-crisislens-backend.hf.space).
+#   By default, browsers block cross-domain requests for security.
+#   CORS headers tell the browser "I explicitly allow this other domain
+#   to call my API."
+#
+# WHY THE OLD VERSION WAS BROKEN:
+#   "https://*.vercel.app" looks like it should match any Vercel subdomain.
+#   But FastAPI's CORSMiddleware does EXACT STRING MATCHING only.
+#   It compared the browser's Origin header "https://crisislens.vercel.app"
+#   against the literal string "https://*.vercel.app" — no match → blocked.
+#
+# THE FIX:
+#   Read the exact frontend URL from the FRONTEND_URL environment variable.
+#   Set this in HuggingFace Space settings → Settings → Variables.
+#   This keeps the URL out of the code and makes it easy to change.
+#
+#   We always include localhost origins for local development.
+#   In production, FRONTEND_URL adds the real Vercel domain.
 # =============================================================================
+
+# Build the allowed origins list dynamically
+allowed_origins = [
+    "http://localhost:3000",     # React local development
+    "http://localhost:5173",     # Vite default port
+]
+
+# Add the production frontend URL from environment variable.
+# Set FRONTEND_URL in HuggingFace Space settings → Variables.
+# Example value: https://crisis-lens.vercel.app
+frontend_url = os.environ.get("FRONTEND_URL", "")
+if frontend_url:
+    allowed_origins.append(frontend_url)
+    print(f"   CORS: allowing frontend from {frontend_url}")
+else:
+    # No FRONTEND_URL set — allow all origins as fallback.
+    # This is less secure but prevents CORS from being a blocker
+    # during initial setup when you haven't configured the variable yet.
+    allowed_origins = ["*"]
+    print("   ⚠️  CORS: FRONTEND_URL not set — allowing all origins")
+    print("      Set FRONTEND_URL in HuggingFace Space variables for production")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:3000",     # React local development
-        "http://localhost:5173",     # Vite default port
-        "https://*.vercel.app",      # Vercel production deployment
-    ],
-    allow_credentials = True,
+    allow_origins     = allowed_origins,
+    allow_credentials = True if frontend_url else False,  # Can't use credentials with "*"
     allow_methods     = ["*"],
     allow_headers     = ["*"],
 )
