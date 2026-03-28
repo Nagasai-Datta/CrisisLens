@@ -215,3 +215,9 @@ app.add_middleware(
 # =============================================================================
 
 app.include_router(router, prefix="/api")
+
+
+@app.get("/")
+async def root():
+    """Root endpoint — HuggingFace Spaces checks this to confirm the app is running."""
+    return {"status": "CrisisLens API is running"}
