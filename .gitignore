@@ -12,3 +12,4 @@ frontend/dist/
 frontend/.vite/
 .DS_Store
 *.log
+backend/models/*.pkl
