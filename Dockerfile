@@ -2,6 +2,12 @@ FROM python:3.11-slim
 
 RUN useradd -m -u 1000 user
 
+USER user
+
+ENV PATH=/home/user/.local/bin:$PATH \
+    HOME=/home/user \
+    HF_HOME=/data/.huggingface
+
 WORKDIR /home/user/app
 
 COPY --chown=user backend/requirements.txt .
@@ -9,12 +15,6 @@ RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
 COPY --chown=user . .
-
-USER user
-
-ENV HF_HOME=/data/.huggingface
-ENV HOME=/home/user
-ENV PATH=/home/user/.local/bin:$PATH
 
 EXPOSE 7860
 
