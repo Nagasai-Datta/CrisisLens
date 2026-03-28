@@ -1,0 +1,234 @@
+.sidebar {
+  width:           var(--sidebar-width);
+  min-width:       var(--sidebar-width);
+  background:      var(--bg-secondary);
+  border-right:    1px solid var(--border-subtle);
+  display:         flex;
+  flex-direction:  column;
+  overflow-y:      auto;
+  overflow-x:      hidden;
+}
+
+.sidebar-header {
+  padding:         20px 16px 16px;
+  border-bottom:   1px solid var(--border-subtle);
+}
+
+.sidebar-logo {
+  display:         flex;
+  align-items:     center;
+  gap:             8px;
+  margin-bottom:   8px;
+}
+
+.logo-icon { font-size: 20px; color: var(--accent); }
+
+.logo-text {
+  font-size:       18px;
+  font-weight:     700;
+  letter-spacing:  -0.5px;
+  color:           var(--text-primary);
+}
+
+.system-status {
+  display:         flex;
+  align-items:     center;
+  gap:             6px;
+  font-size:       12px;
+  color:           var(--text-secondary);
+  margin-bottom:   4px;
+}
+
+.system-status.ok       { color: var(--status-ok); }
+.system-status.degraded { color: var(--status-error); }
+
+.last-updated {
+  font-size:    11px;
+  color:        var(--text-muted);
+  font-family:  var(--font-mono);
+}
+
+.sidebar-section {
+  padding:         16px;
+  border-bottom:   1px solid var(--border-subtle);
+}
+
+.section-label {
+  font-size:       11px;
+  font-weight:     600;
+  text-transform:  uppercase;
+  letter-spacing:  1px;
+  color:           var(--text-muted);
+  margin-bottom:   10px;
+}
+
+.health-grid { display: flex; flex-direction: column; gap: 8px; }
+
+.health-item { display: flex; align-items: center; gap: 8px; }
+
+.health-model-name {
+  flex:          1;
+  font-size:     13px;
+  color:         var(--text-secondary);
+  text-transform:capitalize;
+}
+
+.health-status-text { font-size: 12px; font-family: var(--font-mono); }
+.text-ok            { color: var(--status-ok); }
+.text-error         { color: var(--status-error); }
+
+.health-stats {
+  display:         flex;
+  justify-content: space-between;
+  margin-top:      10px;
+  font-size:       11px;
+  color:           var(--text-muted);
+  font-family:     var(--font-mono);
+}
+
+.urgency-summary { display: flex; gap: 8px; }
+
+.urgency-item {
+  flex:          1;
+  background:    var(--bg-tertiary);
+  border-radius: var(--radius-md);
+  padding:       10px 8px;
+  text-align:    center;
+  border:        1px solid var(--border-subtle);
+}
+
+.urgency-item.critical { border-color: var(--critical); background: var(--critical-bg); }
+.urgency-item.high     { border-color: var(--high);     background: var(--high-bg);     }
+.urgency-item.moderate { border-color: var(--moderate); background: var(--moderate-bg); }
+
+.urgency-count {
+  display:      block;
+  font-size:    24px;
+  font-weight:  700;
+  line-height:  1;
+  margin-bottom:4px;
+  color:        var(--text-primary);
+}
+
+.urgency-item.critical .urgency-count { color: var(--critical); }
+.urgency-item.high     .urgency-count { color: var(--high);     }
+.urgency-item.moderate .urgency-count { color: var(--moderate); }
+
+.urgency-label-text {
+  font-size:     10px;
+  font-weight:   700;
+  letter-spacing:0.5px;
+  color:         var(--text-muted);
+}
+
+/* ── Upload Section ─────────────────────────────────────────────────── */
+.upload-section { flex: 1; }
+
+.input-hint {
+  font-size:    12px;
+  color:        var(--text-muted);
+  margin-bottom:10px;
+  line-height:  1.4;
+}
+
+.upload-btn {
+  width:         100%;
+  padding:       10px;
+  background:    var(--bg-tertiary);
+  border:        1px dashed var(--border-strong);
+  border-radius: var(--radius-md);
+  color:         var(--text-secondary);
+  font-size:     13px;
+  font-weight:   500;
+  cursor:        pointer;
+  transition:    border-color 0.2s, color 0.2s, background 0.2s;
+  text-align:    center;
+}
+
+.upload-btn:hover:not(:disabled) {
+  border-color:  var(--accent);
+  color:         var(--accent);
+  background:    var(--accent-glow);
+}
+
+.upload-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.file-info {
+  margin-top:    10px;
+  padding:       10px;
+  background:    var(--bg-tertiary);
+  border:        1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+}
+
+.file-name {
+  font-size:     12px;
+  color:         var(--text-primary);
+  font-weight:   500;
+  margin-bottom: 4px;
+  word-break:    break-all;
+}
+
+.file-lines {
+  font-size:     11px;
+  color:         var(--status-ok);
+  font-family:   var(--font-mono);
+  margin-bottom: 10px;
+}
+
+.file-actions {
+  display:       flex;
+  gap:           8px;
+}
+
+.clear-file-btn {
+  padding:       8px 12px;
+  background:    none;
+  border:        1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  color:         var(--text-muted);
+  font-size:     12px;
+  cursor:        pointer;
+  transition:    border-color 0.15s, color 0.15s;
+}
+
+.clear-file-btn:hover { border-color: var(--status-error); color: var(--status-error); }
+
+.submit-btn {
+  flex:          1;
+  padding:       8px;
+  background:    var(--accent);
+  color:         white;
+  border:        none;
+  border-radius: var(--radius-md);
+  font-size:     13px;
+  font-weight:   600;
+  cursor:        pointer;
+  transition:    opacity 0.2s;
+}
+
+.submit-btn:hover:not(:disabled) { opacity: 0.85; }
+.submit-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.submit-btn.submitting { background: var(--bg-elevated); color: var(--text-secondary); }
+
+.file-error {
+  margin-top:    8px;
+  font-size:     12px;
+  color:         var(--status-error);
+  padding:       8px;
+  background:    rgba(231, 76, 60, 0.08);
+  border-radius: var(--radius-sm);
+  border:        1px solid rgba(231, 76, 60, 0.2);
+}
+
+/* ── Footer ─────────────────────────────────────────────────────────── */
+.sidebar-footer {
+  padding:         12px 16px;
+  border-top:      1px solid var(--border-subtle);
+  display:         flex;
+  justify-content: space-between;
+  font-size:       11px;
+  color:           var(--text-muted);
+  font-family:     var(--font-mono);
+  margin-top:      auto;
+}

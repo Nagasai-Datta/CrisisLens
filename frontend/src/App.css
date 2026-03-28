@@ -1,0 +1,53 @@
+/* ── Top-level layout: sidebar + main content ─────────────────────────── */
+.war-room-layout {
+  display:        flex;
+  height:         100vh;
+  width:          100vw;
+  overflow:       hidden;
+  background:     var(--bg-primary);
+}
+
+/* ── Main content area (everything right of sidebar) ─────────────────── */
+.war-room-main {
+  flex:           1;
+  display:        flex;
+  gap:            1px;          /* thin divider line between zones */
+  background:     var(--border-subtle); /* shows through the gap */
+  overflow:       hidden;
+  min-width:      0;
+}
+
+/* ── Zone A: Cluster Feed (left half) ────────────────────────────────── */
+.zone-feed {
+  flex:           1;
+  background:     var(--bg-primary);
+  overflow:       hidden;
+  display:        flex;
+  flex-direction: column;
+}
+
+/* ── Right column: Map + Report stacked ──────────────────────────────── */
+.zone-right {
+  width:          45%;
+  min-width:      380px;
+  display:        flex;
+  flex-direction: column;
+  gap:            1px;
+  background:     var(--border-subtle);
+}
+
+/* ── Zone B: Tactical Map (top of right column) ──────────────────────── */
+.zone-map {
+  flex:           1;
+  background:     var(--bg-secondary);
+  overflow:       hidden;
+  min-height:     300px;
+}
+
+/* ── Zone C: Commander's Report (bottom of right column) ─────────────── */
+.zone-report {
+  height:         35%;
+  min-height:     200px;
+  background:     var(--bg-secondary);
+  overflow:       hidden;
+}

@@ -1,0 +1,141 @@
+/* ==========================================================================
+   FILE: frontend/src/index.css
+   
+   PURPOSE:
+     Global styles and CSS custom properties (variables) for the War Room.
+     Defines the modern dark theme — deep charcoal/navy backgrounds,
+     clean cards, accent colours for urgency.
+     
+   DESIGN DIRECTION:
+     Think Vercel dashboard or Linear app — not military terminal.
+     Dark, clean, professional. Cards with subtle borders, not harsh grids.
+     Urgency is communicated through colour and badge size, not ALL CAPS BLINKING.
+   ========================================================================== */
+
+/* ── CSS Custom Properties (Design Tokens) ────────────────────────────────
+   These are the single source of truth for colours, spacing, radii.
+   Change a value here → it changes everywhere it's used.                  */
+:root {
+  /* Backgrounds — layered from darkest to lightest */
+  --bg-primary:    #0f0f13;    /* main page background — near black */
+  --bg-secondary:  #17171f;    /* card and panel backgrounds */
+  --bg-tertiary:   #1e1e28;    /* hover states, input backgrounds */
+  --bg-elevated:   #252530;    /* elevated elements, dropdowns */
+
+  /* Borders */
+  --border-subtle: #2a2a38;    /* subtle card borders */
+  --border-strong: #3a3a50;    /* stronger dividers */
+
+  /* Text */
+  --text-primary:  #f0f0f5;    /* main readable text */
+  --text-secondary:#8888a0;    /* secondary labels, metadata */
+  --text-muted:    #555568;    /* very secondary — timestamps, counts */
+
+  /* Accent */
+  --accent:        #e94560;    /* CrisisLens brand red */
+  --accent-glow:   rgba(233, 69, 96, 0.15);
+
+  /* Urgency colours */
+  --critical:      #e74c3c;    /* CRITICAL — red */
+  --critical-bg:   rgba(231, 76, 60, 0.12);
+  --high:          #e67e22;    /* HIGH — orange */
+  --high-bg:       rgba(230, 126, 34, 0.12);
+  --moderate:      #3498db;    /* MODERATE — blue */
+  --moderate-bg:   rgba(52, 152, 219, 0.12);
+
+  /* Status colours */
+  --status-ok:     #2ecc71;    /* model loaded ok — green */
+  --status-error:  #e74c3c;    /* model failed — red */
+
+  /* Layout */
+  --sidebar-width: 280px;
+  --radius-sm:     6px;
+  --radius-md:     10px;
+  --radius-lg:     16px;
+
+  /* Typography */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+}
+
+/* ── Reset and Base ────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;          /* prevent page scroll — War Room fills viewport */
+}
+
+body {
+  font-family: var(--font-sans);
+  background:  var(--bg-primary);
+  color:       var(--text-primary);
+  font-size:   14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Scrollbar Styling ─────────────────────────────────────────────────── */
+::-webkit-scrollbar       { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-secondary); }
+::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+/* ── Leaflet Map Overrides ─────────────────────────────────────────────── 
+   Leaflet adds its own styles — we need to override the popup and
+   attribution colours to match our dark theme.                           */
+.leaflet-container {
+  background: #1a1a2e !important;
+  font-family: var(--font-sans) !important;
+}
+
+.leaflet-control-attribution {
+  background: var(--bg-secondary) !important;
+  color:       var(--text-muted)  !important;
+  font-size:   10px               !important;
+}
+
+.leaflet-control-attribution a { color: var(--text-secondary) !important; }
+
+.leaflet-control-zoom a {
+  background:   var(--bg-secondary) !important;
+  color:        var(--text-primary) !important;
+  border-color: var(--border-subtle) !important;
+}
+
+/* ── Utility Classes ───────────────────────────────────────────────────── */
+.badge {
+  display:       inline-flex;
+  align-items:   center;
+  padding:       2px 8px;
+  border-radius: var(--radius-sm);
+  font-size:     11px;
+  font-weight:   700;
+  letter-spacing:0.5px;
+  text-transform:uppercase;
+}
+
+.badge-critical { background: var(--critical-bg); color: var(--critical); border: 1px solid var(--critical); }
+.badge-high     { background: var(--high-bg);     color: var(--high);     border: 1px solid var(--high);     }
+.badge-moderate { background: var(--moderate-bg); color: var(--moderate); border: 1px solid var(--moderate); }
+
+.status-dot {
+  width:         8px;
+  height:        8px;
+  border-radius: 50%;
+  display:       inline-block;
+  flex-shrink:   0;
+}
+
+.status-dot-ok    { background: var(--status-ok);    box-shadow: 0 0 6px var(--status-ok); }
+.status-dot-error { background: var(--status-error); box-shadow: 0 0 6px var(--status-error); }

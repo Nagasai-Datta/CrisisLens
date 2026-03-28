@@ -1,0 +1,857 @@
+{
+  "marina beach": {
+    "lat": 13.053397,
+    "lng": 80.283333,
+    "full_name": "Marina Beach,Chennai, Chennai, Tamil Nadu, 600001, India"
+  },
+  "kapaleeshwarar temple": {
+    "lat": 13.033429,
+    "lng": 80.268658,
+    "full_name": "Mylapore Kapaleeshwarar Temple Tank, East Tank Square Street, CMWSSB Division 124, Ward 124, Zone 9 Teynampet, Chennai Corporation, Chennai, Tamil Nadu, 600004, India"
+  },
+  "fort st george": {
+    "lat": 13.079862,
+    "lng": 80.284669,
+    "full_name": "Fort St. George, Rajaji Salai, CMWSSB Division 60, Ward 60, Zone 5 Royapuram, Chennai Corporation, Chennai, Tamil Nadu, 600009, India"
+  },
+  "valluvar kottam": {
+    "lat": 13.053879,
+    "lng": 80.242191,
+    "full_name": "Valluvar kottam, Valluvar Kottam High Road, CMWSSB Division 110, Ward 110, Zone 9 Teynampet, Chennai Corporation, Chennai, Tamil Nadu, 600034, India"
+  },
+  "government museum": {
+    "lat": 13.071281,
+    "lng": 80.257043,
+    "full_name": "Chennai Government Museum, Pantheon Road Flyover, CMWSSB Division 61, Ward 61, Zone 5 Royapuram, Chennai Corporation, Chennai, Tamil Nadu, 600008, India"
+  },
+  "santhome cathedral": {
+    "lat": 13.033589,
+    "lng": 80.277785,
+    "full_name": "St. Thomas Cathedral Basilica, 12, Rosary Church Road, CMWSSB Division 125, Santhome, Zone 9 Teynampet, Chennai Corporation, Chennai, Tamil Nadu, 600004, India"
+  },
+  "elliot's beach": {
+    "lat": 12.998191,
+    "lng": 80.27068,
+    "full_name": "Elliot's Beach Promenade, CMWSSB Division 176, Ward 176, Zone 13 Adyar, Chennai Corporation, Chennai, Tamil Nadu, 600090, India"
+  },
+  "besant nagar beach": {
+    "lat": 12.998191,
+    "lng": 80.27068,
+    "full_name": "Elliot's Beach Promenade, CMWSSB Division 176, Ward 176, Zone 13 Adyar, Chennai Corporation, Chennai, Tamil Nadu, 600090, India"
+  },
+  "ripon building": {
+    "lat": 13.081205,
+    "lng": 80.273015,
+    "full_name": "Ripon Building, General Hospital Road, CMWSSB Division 59, Ward 59, Zone 5 Royapuram, Chennai Corporation, Chennai, Tamil Nadu, 600001, India"
+  },
+  "central station": {
+    "lat": 13.08259,
+    "lng": 80.276308,
+    "full_name": "Chennai Central Railway Station, Wall Tax Road, CMWSSB Division 59, Ward 59, Zone 5 Royapuram, Chennai Corporation, Chennai, Tamil Nadu, 600001, India"
+  },
+  "chennai central": {
+    "lat": 1.306402,
+    "lng": 103.851579,
+    "full_name": "Chennai, 71, Serangoon Road, Farrer Park, Little India, Rochor, Central Region, Singapore, 217964, Singapore"
+  },
+  "chennai egmore": {
+    "lat": 13.077749,
+    "lng": 80.261257,
+    "full_name": "Chennai Egmore, Gandhi Irwin Road, CMWSSB Division 61, Ward 61, Zone 5 Royapuram, Chennai Corporation, Chennai, Tamil Nadu, 600003, India"
+  },
+  "egmore station": {
+    "lat": 13.077749,
+    "lng": 80.261257,
+    "full_name": "Chennai Egmore, Gandhi Irwin Road, CMWSSB Division 61, Ward 61, Zone 5 Royapuram, Chennai Corporation, Chennai, Tamil Nadu, 600003, India"
+  },
+  "broadway": {
+    "lat": 13.08688,
+    "lng": 80.283768,
+    "full_name": "Broadway Bus Terminus, Esplanade, CMWSSB Division 59, Ward 59, Zone 5 Royapuram, Chennai Corporation, Chennai, Tamil Nadu, 600009, India"
+  },
+  "spencer plaza": {
+    "lat": 13.061584,
+    "lng": 80.260942,
+    "full_name": "Spencer Plaza, Anna Salai (Mount Road), CMWSSB Division 111, Ward 111, Zone 9 Teynampet, Chennai Corporation, Chennai, Tamil Nadu, 600112, India"
+  },
+  "express avenue": {
+    "lat": 13.058821,
+    "lng": 80.264103,
+    "full_name": "Express Avenue Mall, Ward 111, Zone 9 Teynampet, Chennai Corporation, Chennai, Tamil Nadu, 600014, India"
+  },
+  "chennai airport": {
+    "lat": 12.993374,
+    "lng": 80.172587,
+    "full_name": "Chennai International Airport, Grand Southern Trunk Road, CMWSSB Division 201, St. Thomas Mount Cantonment, Alandur, Chennai, Tamil Nadu, 600027, India"
+  },
+  "meenambakkam airport": {
+    "lat": 12.993374,
+    "lng": 80.172587,
+    "full_name": "Chennai International Airport, Grand Southern Trunk Road, CMWSSB Division 201, St. Thomas Mount Cantonment, Alandur, Chennai, Tamil Nadu, 600027, India"
+  },
+  "government general hospital": {
+    "lat": 13.080608,
+    "lng": 80.277331,
+    "full_name": "Rajiv Gandhi Government General Hospital, General Hospital Road, CMWSSB Division 59, Ward 59, Zone 5 Royapuram, Chennai Corporation, Chennai, Tamil Nadu, 600003, India"
+  },
+  "gg hospital": {
+    "lat": 13.080608,
+    "lng": 80.277331,
+    "full_name": "Rajiv Gandhi Government General Hospital, General Hospital Road, CMWSSB Division 59, Ward 59, Zone 5 Royapuram, Chennai Corporation, Chennai, Tamil Nadu, 600003, India"
+  },
+  "ggh": {
+    "lat": 13.080608,
+    "lng": 80.277331,
+    "full_name": "Rajiv Gandhi Government General Hospital, General Hospital Road, CMWSSB Division 59, Ward 59, Zone 5 Royapuram, Chennai Corporation, Chennai, Tamil Nadu, 600003, India"
+  },
+  "gh": {
+    "lat": 13.080608,
+    "lng": 80.277331,
+    "full_name": "Rajiv Gandhi Government General Hospital, General Hospital Road, CMWSSB Division 59, Ward 59, Zone 5 Royapuram, Chennai Corporation, Chennai, Tamil Nadu, 600003, India"
+  },
+  "stanley hospital": {
+    "lat": 13.106419,
+    "lng": 80.283879,
+    "full_name": "Stanley Medical College and Hospital, Dhakshina Murthy Koil Street, CMWSSB Division 52, Ward 52, Zone 5 Royapuram, Chennai Corporation, Chennai, Tamil Nadu, 600021, India"
+  },
+  "stanley": {
+    "lat": 13.106419,
+    "lng": 80.283879,
+    "full_name": "Stanley Medical College and Hospital, Dhakshina Murthy Koil Street, CMWSSB Division 52, Ward 52, Zone 5 Royapuram, Chennai Corporation, Chennai, Tamil Nadu, 600021, India"
+  },
+  "rajiv gandhi hospital": {
+    "lat": 13.080608,
+    "lng": 80.277331,
+    "full_name": "Rajiv Gandhi Government General Hospital, Wall Tax Road, CMWSSB Division 59, Ward 59, Zone 5 Royapuram, Chennai Corporation, Chennai, Tamil Nadu, 600003, India"
+  },
+  "kilpauk medical college": {
+    "lat": 13.078598,
+    "lng": 80.243337,
+    "full_name": "Kilpauk Medical College, Rajarathinam Street, CMWSSB Division 103, Ward 103, Zone 8 Anna Nagar, Chennai Corporation, Chennai, Tamil Nadu, 600010, India"
+  },
+  "kmc hospital": {
+    "lat": 13.078598,
+    "lng": 80.243337,
+    "full_name": "Kilpauk Medical College, Rajarathinam Street, CMWSSB Division 103, Ward 103, Zone 8 Anna Nagar, Chennai Corporation, Chennai, Tamil Nadu, 600010, India"
+  },
+  "fortis malar": {
+    "lat": 13.010176,
+    "lng": 80.2587,
+    "full_name": "Fortis Malar Hospital, PS Road, CMWSSB Division 175, Ward 175, Zone 13 Adyar, Chennai Corporation, Chennai, Tamil Nadu, 600020, India"
+  },
+  "miot hospital": {
+    "lat": 13.021181,
+    "lng": 80.185841,
+    "full_name": "MIOT International, Miot International Hospital road, CMWSSB Division 157, Manapakkam, Ward 157, Zone 12 Alandur, Chennai Corporation, Alandur, Chennai, Tamil Nadu, 600089, India"
+  },
+  "sri ramachandra hospital": {
+    "lat": 13.039097,
+    "lng": 80.141966,
+    "full_name": "Sri Ramachandra Medical College And Research Institute, Mount - Poonamallee - Avadi Road, Ayappanthangal, Kanchipuram, Thiruvallur, Tamil Nadu, 600016, India"
+  },
+  "kauvery hospital": {
+    "lat": 13.039056,
+    "lng": 80.256821,
+    "full_name": "Kauvery Hospital, Chennai, Maharaja Surya Road, CMWSSB Division 118, Ward 118, Zone 9 Teynampet, Chennai Corporation, Chennai, Tamil Nadu, 600018, India"
+  },
+  "vijaya hospital": {
+    "lat": 13.049739,
+    "lng": 80.208322,
+    "full_name": "Vijaya Group of Hospital, Arcot Road, CMWSSB Division 130, Ward 130, Zone 10 Kodambakkam, Chennai Corporation, Chennai, Tamil Nadu, 600017, India"
+  },
+  "billroth hospital": {
+    "lat": 13.027351,
+    "lng": 80.256753,
+    "full_name": "Billroth Hospital, RA Puram 2nd Main Road, CMWSSB Division 123, Ward 123, Zone 9 Teynampet, Chennai Corporation, Chennai, Tamil Nadu, 600028, India"
+  },
+  "mgm healthcare": {
+    "lat": 13.070871,
+    "lng": 80.221859,
+    "full_name": "MGM Healthcare, Nelson Manickam Road, CMWSSB Division 106, Ward 106, Zone 8 Anna Nagar, Chennai Corporation, Chennai, Tamil Nadu, 600029, India"
+  },
+  "institute of mental health": {
+    "lat": 13.090192,
+    "lng": 80.238549,
+    "full_name": "Institute of Mental Health - Kilpauk, Medavakkam Tank Road, CMWSSB Division 98, Ward 98, Zone 8 Anna Nagar, Zone 6 Thiru. Vi. Ka. Nagar, Chennai Corporation, Chennai, Tamil Nadu, 600023, India"
+  },
+  "imh": {
+    "lat": 13.090192,
+    "lng": 80.238549,
+    "full_name": "Institute of Mental Health - Kilpauk, Medavakkam Tank Road, CMWSSB Division 98, Ward 98, Zone 8 Anna Nagar, Zone 6 Thiru. Vi. Ka. Nagar, Chennai Corporation, Chennai, Tamil Nadu, 600023, India"
+  },
+  "omr apollo": {
+    "lat": 12.915081,
+    "lng": 80.229773,
+    "full_name": "Apollo White Dental Clinic and Hospital, Rajiv Gandhi Salai, CMWSSB Division 197, Ward 197, Zone 15 Sholinganallur, Chennai Corporation, Chengalpattu, Chennai, Tamil Nadu, 600097, India"
+  },
+  "tambaram": {
+    "lat": 12.916605,
+    "lng": 80.101949,
+    "full_name": "Chennai Bypass Expressway, Irumbuliyur, Tambaram, Chengalpattu, Tamil Nadu, 600045, India"
+  },
+  "perambur station": {
+    "lat": 13.108259,
+    "lng": 80.251516,
+    "full_name": "Perambur Railway Station, Perambur, Ward 70, Zone 6 Thiru. Vi. Ka. Nagar, Chennai Corporation, Chennai, Tamil Nadu, India"
+  },
+  "perambur": {
+    "lat": 13.112124,
+    "lng": 80.245022,
+    "full_name": "Perambur, Ward 70, Zone 6 Thiru. Vi. Ka. Nagar, Chennai Corporation, Chennai, Tamil Nadu, 600011, India"
+  },
+  "mambalam station": {
+    "lat": 13.038066,
+    "lng": 80.227775,
+    "full_name": "Mambalam, Babu Rajendra Prasad 2nd street, CMWSSB Division 136, Ward 136, Zone 10 Kodambakkam, Chennai Corporation, Chennai, Tamil Nadu, 600033, India"
+  },
+  "kodambakkam station": {
+    "lat": 13.051662,
+    "lng": 80.230689,
+    "full_name": "Kodambakkam, Railway Border Road, CMWSSB Division 134, Ward 134, Zone 9 Teynampet, Chennai Corporation, Chennai, Tamil Nadu, 600024, India"
+  },
+  "saidapet station": {
+    "lat": 13.02331,
+    "lng": 80.223719,
+    "full_name": "Saidapet, Karaneeswar Koil Street, CMWSSB Division 142, Ward 142, Zone 10 Kodambakkam, Chennai Corporation, Chennai, Tamil Nadu, 600015, India"
+  },
+  "guindy station": {
+    "lat": 13.008047,
+    "lng": 80.213137,
+    "full_name": "Guindy Railway Station, Racecourse Road, CMWSSB Division 174, Ward 174, Zone 13 Adyar, Chennai Corporation, Chennai, Tamil Nadu, 600032, India"
+  },
+  "st thomas mount station": {
+    "lat": 12.994639,
+    "lng": 80.200193,
+    "full_name": "பரங்கிமலை ரயில் நிலையம், Medavakkam Main Road, CMWSSB Division 161, Ward 161, Zone 12 Alandur, Chennai Corporation, Alandur, Chennai, Tamil Nadu, 600088, India"
+  },
+  "pallavaram station": {
+    "lat": 12.967574,
+    "lng": 80.15205,
+    "full_name": "Pallavaram, Siva Shankaran Street, Alandur, Chennai, Tamil Nadu, 600043, India"
+  },
+  "ambattur station": {
+    "lat": 13.114024,
+    "lng": 80.152861,
+    "full_name": "Ambattur, Railway Foot Over Bridge, CMWSSB Division 85, Ward 85, Zone 7 Ambattur, Chennai Corporation, Ambattur, Thiruvallur, Tamil Nadu, 600053, India"
+  },
+  "basin bridge": {
+    "lat": 13.102301,
+    "lng": 80.270674,
+    "full_name": "பேசின் பிரிட்ஜ், Basin Bridge Road, CMWSSB Division 72, Pulianthope, Ward 72, Zone 6 Thiru. Vi. Ka. Nagar, Chennai Corporation, Chennai, Tamil Nadu, 600079, India"
+  },
+  "korukkupet": {
+    "lat": 13.119425,
+    "lng": 80.278456,
+    "full_name": "Korukkupet, Korukkupet Station Road, CMWSSB Division 47, Ward 47, Zone 4 Tondiarpet, Chennai Corporation, Chennai, Tamil Nadu, 600021, India"
+  },
+  "tiruvallur": {
+    "lat": 13.116192,
+    "lng": 79.91216,
+    "full_name": "Tiruvallur, J. N. Road, Tiruvallur, Thiruvallur, Tamil Nadu, 602001, India"
+  },
+  "adyar": {
+    "lat": 13.00645,
+    "lng": 80.257779,
+    "full_name": "Zone 13 Adyar, Chennai Corporation, Chennai, Tamil Nadu, India"
+  },
+  "velachery": {
+    "lat": 12.980166,
+    "lng": 80.222851,
+    "full_name": "Velachery, Chennai Corporation, Chennai, Tamil Nadu, 600042, India"
+  },
+  "t nagar": {
+    "lat": 13.029448,
+    "lng": 80.230906,
+    "full_name": "Halcyon Technologies, CIT Nagar 1st Main Road, CMWSSB Division 141, Ward 141, Zone 10 Kodambakkam, Chennai Corporation, Chennai, Tamil Nadu, 600022, India"
+  },
+  "t.nagar": {
+    "lat": 13.029448,
+    "lng": 80.230906,
+    "full_name": "Halcyon Technologies, CIT Nagar 1st Main Road, CMWSSB Division 141, Ward 141, Zone 10 Kodambakkam, Chennai Corporation, Chennai, Tamil Nadu, 600022, India"
+  },
+  "anna nagar": {
+    "lat": 13.0872,
+    "lng": 80.216442,
+    "full_name": "Zone 8 Anna Nagar, Chennai Corporation, Chennai, Tamil Nadu, India"
+  },
+  "nungambakkam": {
+    "lat": 13.062063,
+    "lng": 80.240487,
+    "full_name": "Nungambakkam, Zone 9 Teynampet, Chennai Corporation, Chennai, Tamil Nadu, 600034, India"
+  },
+  "mylapore": {
+    "lat": 13.031647,
+    "lng": 80.270017,
+    "full_name": "Mylapore, Zone 9 Teynampet, Chennai Corporation, Chennai, Tamil Nadu, 600004, India"
+  },
+  "kodambakkam": {
+    "lat": 13.049207,
+    "lng": 80.224283,
+    "full_name": "Zone 10 Kodambakkam, Chennai Corporation, Chennai, Tamil Nadu, India"
+  },
+  "guindy": {
+    "lat": 13.008669,
+    "lng": 80.212606,
+    "full_name": "Guindy, Anna Salai (Mount Road), CMWSSB Division 160, Ward 160, Zone 12 Alandur, Chennai Corporation, Alandur, Chennai, Tamil Nadu, 600032, India"
+  },
+  "thiruvanmiyur": {
+    "lat": 12.985895,
+    "lng": 80.264421,
+    "full_name": "Thiruvanmiyur, Zone 13 Adyar, Chennai Corporation, Chennai, Tamil Nadu, 600041, India"
+  },
+  "besant nagar": {
+    "lat": 12.999691,
+    "lng": 80.268226,
+    "full_name": "Besant Nagar, Zone 13 Adyar, Chennai Corporation, Chennai, Tamil Nadu, 600090, India"
+  },
+  "alwarpet": {
+    "lat": 13.03386,
+    "lng": 80.254549,
+    "full_name": "Alwarpet, Zone 9 Teynampet, Chennai Corporation, Chennai, Tamil Nadu, 600018, India"
+  },
+  "kilpauk": {
+    "lat": 13.083215,
+    "lng": 80.237986,
+    "full_name": "Kilpauk, Zone 8 Anna Nagar, Chennai Corporation, Chennai, Tamil Nadu, 600010, India"
+  },
+  "chetpet": {
+    "lat": 13.071745,
+    "lng": 80.243797,
+    "full_name": "Chetpet, Zone 8 Anna Nagar, Chennai Corporation, Chennai, Tamil Nadu, 600006, India"
+  },
+  "egmore": {
+    "lat": 13.072832,
+    "lng": 80.257691,
+    "full_name": "Egmore, Zone 5 Royapuram, Chennai Corporation, Chennai, Tamil Nadu, 600008, India"
+  },
+  "purasaiwalkam": {
+    "lat": 13.086782,
+    "lng": 80.259858,
+    "full_name": "Purasaiwalkam Flyover, CMWSSB Division 58, Ward 58, Zone 5 Royapuram, Chennai Corporation, Chennai, Tamil Nadu, 600084, India"
+  },
+  "royapuram": {
+    "lat": 13.10429,
+    "lng": 80.293612,
+    "full_name": "Royapuram, North Terminus Road, CMWSSB Division 52, Ward 52, Zone 5 Royapuram, Chennai Corporation, Chennai, Tamil Nadu, 600021, India"
+  },
+  "tondiarpet": {
+    "lat": 13.12752,
+    "lng": 80.281924,
+    "full_name": "Tondiarpet, Vaidhyanathan Bridge, CMWSSB Division 38, Ward 38, Zone 4 Tondiarpet, Chennai Corporation, Chennai, Tamil Nadu, 600081, India"
+  },
+  "madhavaram": {
+    "lat": 13.142931,
+    "lng": 80.232517,
+    "full_name": "Zone 3 Madhavaram, Chennai Corporation, Mathavaram, Thiruvallur, Tamil Nadu, India"
+  },
+  "kolathur": {
+    "lat": 13.124113,
+    "lng": 80.204628,
+    "full_name": "Kolathur, Ward 65, Zone 6 Thiru. Vi. Ka. Nagar, Chennai Corporation, Chennai, Tamil Nadu, 600099, India"
+  },
+  "villivakkam": {
+    "lat": 13.112588,
+    "lng": 80.208138,
+    "full_name": "Villivakkam, Ward 65, Zone 6 Thiru. Vi. Ka. Nagar, Chennai Corporation, Chennai, Tamil Nadu, 600049, India"
+  },
+  "ambattur": {
+    "lat": 13.119375,
+    "lng": 80.150765,
+    "full_name": "Zone 7 Ambattur, Chennai Corporation, Ambattur, Thiruvallur, Tamil Nadu, India"
+  },
+  "avadi": {
+    "lat": 13.040353,
+    "lng": 80.129575,
+    "full_name": "Mount - Poonamallee - Avadi Road, Ayappanthangal, Alandur, Chennai, Tamil Nadu, 600056, India"
+  },
+  "porur": {
+    "lat": 13.032013,
+    "lng": 80.158304,
+    "full_name": "Porur, Zone 11 Valasaravakkam, Chennai Corporation, Ambattur, Thiruvallur, Tamil Nadu, 600116, India"
+  },
+  "valasaravakkam": {
+    "lat": 13.041016,
+    "lng": 80.172168,
+    "full_name": "Zone 11 Valasaravakkam, Chennai Corporation, Ambattur, Thiruvallur, Tamil Nadu, India"
+  },
+  "ramapuram": {
+    "lat": 13.029861,
+    "lng": 80.178033,
+    "full_name": "Ramapuram, Zone 11 Valasaravakkam, Chennai Corporation, Ambattur, Thiruvallur, Tamil Nadu, 600089, India"
+  },
+  "virugambakkam": {
+    "lat": 13.047543,
+    "lng": 80.192218,
+    "full_name": "Virugambakkam, Zone 10 Kodambakkam, Chennai Corporation, Chennai, Tamil Nadu, 600093, India"
+  },
+  "vadapalani": {
+    "lat": 13.05093,
+    "lng": 80.212066,
+    "full_name": "Vadapalani, Vadapalani Flyover, CMWSSB Division 130, Ward 130, Zone 10 Kodambakkam, Chennai Corporation, Chennai, Tamil Nadu, 600026, India"
+  },
+  "ashok nagar": {
+    "lat": 13.040073,
+    "lng": 80.215925,
+    "full_name": "Ashok Nagar, Zone 10 Kodambakkam, Chennai Corporation, Chennai, Tamil Nadu, 600083, India"
+  },
+  "kk nagar": {
+    "lat": 13.038649,
+    "lng": 80.205216,
+    "full_name": "Kalaignar Karunanidhi Nagar, PT Rajan Salai, CMWSSB Division 131, Ward 131, Zone 10 Kodambakkam, Chennai Corporation, Chennai, Tamil Nadu, 600078, India"
+  },
+  "arumbakkam": {
+    "lat": 13.074371,
+    "lng": 80.208131,
+    "full_name": "Arumbakkam, Zone 8 Anna Nagar, Chennai Corporation, Chennai, Tamil Nadu, 600106, India"
+  },
+  "saligramam": {
+    "lat": 13.058341,
+    "lng": 80.198533,
+    "full_name": "Saligramam, Zone 10 Kodambakkam, Chennai Corporation, Chennai, Tamil Nadu, 600093, India"
+  },
+  "koyambedu": {
+    "lat": 13.07345,
+    "lng": 80.194836,
+    "full_name": "Koyambedu, EVR Periyar Salai, CMWSSB Division 127, Ward 127, Zone 10 Kodambakkam, Chennai Corporation, Ambattur, Chennai, Tamil Nadu, 600105, India"
+  },
+  "chromepet": {
+    "lat": 12.946277,
+    "lng": 80.137037,
+    "full_name": "Chennai Krishna Hospital, MIT Flyover Ramp, Chromepet, Pallavaram, Chengalpattu, Tamil Nadu, 600044, India"
+  },
+  "pallavaram": {
+    "lat": 12.967574,
+    "lng": 80.15205,
+    "full_name": "Pallavaram, Siva Shankaran Street, Alandur, Chennai, Tamil Nadu, 600043, India"
+  },
+  "perungudi": {
+    "lat": 12.971024,
+    "lng": 80.241805,
+    "full_name": "Zone 14 Perungudi, Chennai Corporation, Sholinganallur, Chennai, Tamil Nadu, India"
+  },
+  "sholinganallur": {
+    "lat": 12.917443,
+    "lng": 80.21649,
+    "full_name": "Sholinganallur, Chennai, Tamil Nadu, India"
+  },
+  "siruseri": {
+    "lat": 12.828273,
+    "lng": 80.220393,
+    "full_name": "Chennai Mathematical Institute, Side Entry, SIPCOT Siruseri, Siruseri, Tiruporur, Chengalpattu, Tamil Nadu, 603103, India"
+  },
+  "thoraipakkam": {
+    "lat": 12.949036,
+    "lng": 80.240753,
+    "full_name": "Pallavaram - Thoraipakkam Road, CMWSSB Division 193, Ward 193, Zone 15 Sholinganallur, Chennai Corporation, Sholinganallur, Chennai, Tamil Nadu, 600096, India"
+  },
+  "perungalathur": {
+    "lat": 12.926202,
+    "lng": 80.100117,
+    "full_name": "Chennai Bypass Expressway, Perungalathur, Tambaram, Chengalpattu, Tamil Nadu, 600045, India"
+  },
+  "selaiyur": {
+    "lat": 12.930347,
+    "lng": 80.132447,
+    "full_name": "14/20, Kasiappar Street, East Tambaram, Chennai - 600059, 14/20, Kasiappar street, East Tambaram, Tambaram, Chengalpattu, Tamil Nadu, 600059, India"
+  },
+  "medavakkam": {
+    "lat": 12.922993,
+    "lng": 80.18829,
+    "full_name": "Medavakkam, Sholinganallur, Chennai, Tamil Nadu, 600100, India"
+  },
+  "madipakkam": {
+    "lat": 12.961135,
+    "lng": 80.200129,
+    "full_name": "Madipakkam, Zone 14 Perungudi, Chennai Corporation, Sholinganallur, Chennai, Tamil Nadu, 600091, India"
+  },
+  "nanganallur": {
+    "lat": 12.980124,
+    "lng": 80.184902,
+    "full_name": "Nanganallur, Ward 167, Zone 12 Alandur, Chennai Corporation, Alandur, Chennai, Tamil Nadu, 600061, India"
+  },
+  "ullagaram": {
+    "lat": 12.976587,
+    "lng": 80.19672,
+    "full_name": "Ullagaram, Zone 14 Perungudi, Chennai Corporation, Alandur, Chennai, Tamil Nadu, 600042, India"
+  },
+  "pammal": {
+    "lat": 13.03479,
+    "lng": 80.199468,
+    "full_name": "Pammal Nallathambhi Street, CMWSSB Division 138, Ward 138, Zone 10 Kodambakkam, Chennai Corporation, Chennai, Tamil Nadu, 600078, India"
+  },
+  "alandur": {
+    "lat": 13.002822,
+    "lng": 80.171919,
+    "full_name": "Alandur, Chennai, Tamil Nadu, India"
+  },
+  "st thomas mount": {
+    "lat": 12.995,
+    "lng": 80.198582,
+    "full_name": "St. Thomas Mount, Medavakkam Main Road, CMWSSB Division 161, Ward 161, Zone 12 Alandur, Chennai Corporation, Alandur, Chennai, Tamil Nadu, 600088, India"
+  },
+  "nandanam": {
+    "lat": 13.031709,
+    "lng": 80.241196,
+    "full_name": "நந்தனம், Anna Salai (Mount Road), CMWSSB Division 122, Ward 122, Zone 9 Teynampet, Chennai Corporation, Chennai, Tamil Nadu, 600035, India"
+  },
+  "saidapet": {
+    "lat": 13.020817,
+    "lng": 80.223954,
+    "full_name": "Saidapet, Zone 10 Kodambakkam, Chennai Corporation, Chennai, Tamil Nadu, 600015, India"
+  },
+  "kotturpuram": {
+    "lat": 13.01937,
+    "lng": 80.243551,
+    "full_name": "Kotturpuram, Zone 13 Adyar, Chennai Corporation, Chennai, Tamil Nadu, 600085, India"
+  },
+  "mandaveli": {
+    "lat": 13.025844,
+    "lng": 80.262788,
+    "full_name": "Mandaveli, Zone 9 Teynampet, Chennai Corporation, Chennai, Tamil Nadu, 600028, India"
+  },
+  "r a puram": {
+    "lat": 13.027289,
+    "lng": 80.254263,
+    "full_name": "R.A. Puram, RA Puram 2nd Main Road, CMWSSB Division 123, Ward 123, Zone 9 Teynampet, Chennai Corporation, Chennai, Tamil Nadu, 600002, India"
+  },
+  "poes garden": {
+    "lat": 13.043707,
+    "lng": 80.253316,
+    "full_name": "Poes Garden, Ward 118, Zone 9 Teynampet, Chennai Corporation, Chennai, Tamil Nadu, 600086, India"
+  },
+  "boat club": {
+    "lat": 13.025203,
+    "lng": 80.250554,
+    "full_name": "Boat Club Road, CMWSSB Division 122, Ward 122, Zone 9 Teynampet, Chennai Corporation, Chennai, Tamil Nadu, 600002, India"
+  },
+  "abhiramapuram": {
+    "lat": 13.031024,
+    "lng": 80.2583,
+    "full_name": "Abhiramapuram, Zone 9 Teynampet, Chennai Corporation, Chennai, Tamil Nadu, 600018, India"
+  },
+  "sowcarpet": {
+    "lat": 13.088497,
+    "lng": 80.278309,
+    "full_name": "Sowcarpet, Ward 59, Zone 5 Royapuram, Chennai Corporation, Chennai, Tamil Nadu, 600079, India"
+  },
+  "parrys": {
+    "lat": 13.088835,
+    "lng": 80.29037,
+    "full_name": "Parrys Corner, Rajaji Salai, CMWSSB Division 60, Ward 60, Zone 5 Royapuram, Chennai Corporation, Chennai, Tamil Nadu, 600009, India"
+  },
+  "parry's corner": {
+    "lat": 13.088835,
+    "lng": 80.29037,
+    "full_name": "Parrys Corner, Rajaji Salai, CMWSSB Division 60, Ward 60, Zone 5 Royapuram, Chennai Corporation, Chennai, Tamil Nadu, 600009, India"
+  },
+  "washermanpet": {
+    "lat": 13.108965,
+    "lng": 80.28201,
+    "full_name": "Washermanpet, Dhakshina Murthy Koil Street, CMWSSB Division 52, Ward 52, Zone 5 Royapuram, Chennai Corporation, Chennai, Tamil Nadu, 600021, India"
+  },
+  "periamet": {
+    "lat": 13.084414,
+    "lng": 80.269277,
+    "full_name": "Periamet, Ward 58, Zone 5 Royapuram, Chennai Corporation, Chennai, Tamil Nadu, 600012, India"
+  },
+  "vepery": {
+    "lat": 13.084295,
+    "lng": 80.262274,
+    "full_name": "Vepery, Zone 5 Royapuram, Chennai Corporation, Chennai, Tamil Nadu, 600001, India"
+  },
+  "choolai": {
+    "lat": 13.090628,
+    "lng": 80.262142,
+    "full_name": "Choolai, Ward 78, Zone 6 Thiru. Vi. Ka. Nagar, Chennai Corporation, Chennai, Tamil Nadu, 600001, India"
+  },
+  "otteri": {
+    "lat": 13.096958,
+    "lng": 80.248722,
+    "full_name": "Otteri, Ward 74, Zone 6 Thiru. Vi. Ka. Nagar, Chennai Corporation, Chennai, Tamil Nadu, 600023, India"
+  },
+  "aminjikarai": {
+    "lat": 13.07214,
+    "lng": 80.220545,
+    "full_name": "Aminjikarai, Zone 8 Anna Nagar, Chennai Corporation, Chennai, Tamil Nadu, 600029, India"
+  },
+  "cit nagar": {
+    "lat": 13.029384,
+    "lng": 80.234283,
+    "full_name": "CIT Nagar, Ward 141, Zone 10 Kodambakkam, Chennai Corporation, Chennai, Tamil Nadu, 600022, India"
+  },
+  "west mambalam": {
+    "lat": 13.04283,
+    "lng": 80.227018,
+    "full_name": "West Mambalam, Zone 10 Kodambakkam, Chennai Corporation, Chennai, Tamil Nadu, 600017, India"
+  },
+  "east tambaram": {
+    "lat": 12.930347,
+    "lng": 80.132447,
+    "full_name": "14/20, Kasiappar Street, East Tambaram, Chennai - 600059, 14/20, Kasiappar street, East Tambaram, Tambaram, Chengalpattu, Tamil Nadu, 600059, India"
+  },
+  "mudichur": {
+    "lat": 12.967694,
+    "lng": 80.217572,
+    "full_name": "Velachery MRTS Bridge, CMWSSB Division 188, Ward 188, Velachery, Chennai Corporation, Sholinganallur, Chennai, Tamil Nadu, 601100, India"
+  },
+  "perumbakkam": {
+    "lat": 12.90501,
+    "lng": 80.196863,
+    "full_name": "Perumbakkam, Sholinganallur, Chennai, Tamil Nadu, 600100, India"
+  },
+  "kovilambakkam": {
+    "lat": 12.939243,
+    "lng": 80.182589,
+    "full_name": "கோவிலாம்பாக்கம், Medavakkam Main Road, Nanmangalam, Sholinganallur, Chennai, Tamil Nadu, 600129, India"
+  },
+  "karapakkam": {
+    "lat": 12.911707,
+    "lng": 80.22772,
+    "full_name": "Karapakkam, Zone 15 Sholinganallur, Chennai Corporation, Sholinganallur, Chennai, Tamil Nadu, 600096, India"
+  },
+  "navalur": {
+    "lat": 12.842764,
+    "lng": 80.22684,
+    "full_name": "Rajiv Gandhi Salai, Navalur, Tiruporur, Chengalpattu, Tamil Nadu, 603103, India"
+  },
+  "kelambakkam": {
+    "lat": 12.797433,
+    "lng": 80.223222,
+    "full_name": "Rajiv Gandhi Salai, Padur, Kelambakkam, Tiruporur, Chengalpattu, Tamil Nadu, 603103, India"
+  },
+  "adyar river": {
+    "lat": 12.968043,
+    "lng": 80.114432,
+    "full_name": "Adyar River, Pallavaram, Chengalpattu, Tamil Nadu, India"
+  },
+  "cooum river": {
+    "lat": 13.098811,
+    "lng": 80.083967,
+    "full_name": "Cooum, Poonamallee, Thiruvallur, Tamil Nadu, India"
+  },
+  "cooum": {
+    "lat": 13.098811,
+    "lng": 80.083967,
+    "full_name": "Cooum, Poonamallee, Thiruvallur, Tamil Nadu, India"
+  },
+  "buckingham canal": {
+    "lat": 12.985419,
+    "lng": 80.252294,
+    "full_name": "Buckingham Canal Green, Ward 180, Zone 13 Adyar, Chennai Corporation, Chennai, Tamil Nadu, India"
+  },
+  "adyar bridge": {
+    "lat": 13.016988,
+    "lng": 80.225516,
+    "full_name": "Chennai Metro Line 1, Maraimalai Adigal Bridge, CMWSSB Division 171, Ward 171, Zone 13 Adyar, Chennai Corporation, Chennai, Tamil Nadu, 600015, India"
+  },
+  "velachery bridge": {
+    "lat": 12.926285,
+    "lng": 80.197877,
+    "full_name": "Chennai School (Corporation), Velachery Mudhanmai Salai, CMWSSB Division 190, Ward 190, Zone 14 Perungudi, Chennai Corporation, Sholinganallur, Chennai, Tamil Nadu, 600100, India"
+  },
+  "kotturpuram bridge": {
+    "lat": 13.025476,
+    "lng": 80.24359,
+    "full_name": "Kotturpuram Bridge, CMWSSB Division 122, Ward 122, Zone 9 Teynampet, Chennai Corporation, Chennai, Tamil Nadu, 600035, India"
+  },
+  "napier bridge": {
+    "lat": 13.068794,
+    "lng": 80.284472,
+    "full_name": "Napier Bridge, Kamarajar Salai, CMWSSB Division 60, Ward 116, Zone 9 Teynampet, Chennai Corporation, Chennai, Tamil Nadu, 600005, India"
+  },
+  "ennore creek": {
+    "lat": 13.22906,
+    "lng": 80.318937,
+    "full_name": "Ennore Creek Bridge, CMWSSB Division 1, Ward 1, Zone 1 Tiruvottiyur, Thazhankuppam, Chennai Corporation, Mathavaram, Thiruvallur, Tamil Nadu, 600057, India"
+  },
+  "red hills lake": {
+    "lat": 13.164949,
+    "lng": 80.18162,
+    "full_name": "Red Hills Reservoir, Kannadapalayam, Mathavaram, Thiruvallur, Tamil Nadu, India"
+  },
+  "porur lake": {
+    "lat": 13.033873,
+    "lng": 80.150332,
+    "full_name": "Porur Lake, Zone 11 Valasaravakkam, Chennai Corporation, Ambattur, Thiruvallur, Tamil Nadu, India"
+  },
+  "chetpet lake": {
+    "lat": 13.075194,
+    "lng": 80.24246,
+    "full_name": "Chetpet Lake, Ward 104, Zone 8 Anna Nagar, Chennai Corporation, Chennai, Tamil Nadu, India"
+  },
+  "velachery lake": {
+    "lat": 12.988295,
+    "lng": 80.210471,
+    "full_name": "Velachery Lake, Zone 13 Adyar, Zone 12 Alandur, Chennai Corporation, Alandur, Chennai, Tamil Nadu, India"
+  },
+  "pallikaranai marsh": {
+    "lat": 12.936501,
+    "lng": 80.224591,
+    "full_name": "Pallikaranai Marsh, Chennai Corporation, Sholinganallur, Chennai, Tamil Nadu, India"
+  },
+  "omr": {
+    "lat": 12.888701,
+    "lng": 80.227369,
+    "full_name": "Rajiv Gandhi Salai, CMWSSB Division 198, Ward 197, Zone 15 Sholinganallur, Chennai Corporation, Sholinganallur, Chennai, Tamil Nadu, 600119, India"
+  },
+  "old mahabalipuram road": {
+    "lat": 12.888701,
+    "lng": 80.227369,
+    "full_name": "Rajiv Gandhi Salai, CMWSSB Division 198, Ward 197, Zone 15 Sholinganallur, Chennai Corporation, Sholinganallur, Chennai, Tamil Nadu, 600119, India"
+  },
+  "ecr": {
+    "lat": 12.970668,
+    "lng": 80.258003,
+    "full_name": "East Coast Road, CMWSSB Division 183, Ward 183, Zone 14 Perungudi, Chennai Corporation, Sholinganallur, Chennai, Tamil Nadu, 600041, India"
+  },
+  "east coast road": {
+    "lat": 12.970668,
+    "lng": 80.258003,
+    "full_name": "East Coast Road, CMWSSB Division 183, Ward 183, Zone 14 Perungudi, Chennai Corporation, Sholinganallur, Chennai, Tamil Nadu, 600041, India"
+  },
+  "gst road": {
+    "lat": 13.052504,
+    "lng": 80.251311,
+    "full_name": "Anna Flyover, CMWSSB Division 111, Ward 111, Zone 9 Teynampet, Chennai Corporation, Chennai, Tamil Nadu, 600086, India"
+  },
+  "anna salai": {
+    "lat": 12.967066,
+    "lng": 80.246813,
+    "full_name": "Anna Salai, CMWSSB Division 184, Ward 184, Zone 14 Perungudi, Chennai Corporation, Sholinganallur, Chennai, Tamil Nadu, 600096, India"
+  },
+  "mount road": {
+    "lat": 13.065077,
+    "lng": 80.26657,
+    "full_name": "Anna Salai (Mount Road), CMWSSB Division 63, Ward 63, Zone 5 Royapuram, Chennai Corporation, Chennai, Tamil Nadu, 600112, India"
+  },
+  "poonamallee high road": {
+    "lat": 13.074131,
+    "lng": 80.228286,
+    "full_name": "EVR Periyar Salai, CMWSSB Division 102, Ward 102, Zone 8 Anna Nagar, Chennai Corporation, Chennai, Tamil Nadu, 600030, India"
+  },
+  "inner ring road": {
+    "lat": 13.135363,
+    "lng": 80.216115,
+    "full_name": "Jawaharlal Nehru Road (100 Feet Road), CMWSSB Division 26, Ward 26, Zone 3 Madhavaram, Chennai Corporation, Mathavaram, Thiruvallur, Tamil Nadu, 600110, India"
+  },
+  "outer ring road": {
+    "lat": 12.950371,
+    "lng": 77.698799,
+    "full_name": "Radisson Blu Bengaluru Outer Ring Road, Sy. #90/4, Outer Ring Road, Panathur, Bengaluru East City Corporation, Bengaluru, Bangalore East, Bengaluru Urban, Karnataka, 560037, India"
+  },
+  "rajiv gandhi salai": {
+    "lat": 12.888699,
+    "lng": 80.227265,
+    "full_name": "Rajiv Gandhi Salai, CMWSSB Division 198, Ward 197, Zone 15 Sholinganallur, Chennai Corporation, Sholinganallur, Chennai, Tamil Nadu, 600119, India"
+  },
+  "100 feet road": {
+    "lat": 13.050445,
+    "lng": 80.206868,
+    "full_name": "Vadapalani MTC Depot, Ward 129, Zone 10 Kodambakkam, Chennai Corporation, Chennai, Tamil Nadu, India"
+  },
+  "velachery main road": {
+    "lat": 12.957347,
+    "lng": 80.213591,
+    "full_name": "Velachery Main Road, CMWSSB Division 188, Ward 188, Zone 14 Perungudi, Chennai Corporation, Sholinganallur, Chennai, Tamil Nadu, 601100, India"
+  },
+  "broadway bus stand": {
+    "lat": 13.08688,
+    "lng": 80.283768,
+    "full_name": "Broadway Bus Terminus, Esplanade, CMWSSB Division 59, Ward 59, Zone 5 Royapuram, Chennai Corporation, Chennai, Tamil Nadu, 600009, India"
+  },
+  "guindy bus stand": {
+    "lat": 13.009059,
+    "lng": 80.210793,
+    "full_name": "Guindy Bus Stand, Alandur Road, CMWSSB Division 170, Ward 170, Zone 13 Adyar, Chennai Corporation, Alandur, Chennai, Tamil Nadu, 600032, India"
+  },
+  "iit madras": {
+    "lat": 12.991477,
+    "lng": 80.233679,
+    "full_name": "IIT Madras, Adayar, CMWSSB Division 174, Ward 174, Zone 13 Adyar, Chennai Corporation, Chennai, Tamil Nadu, 600036, India"
+  },
+  "anna university": {
+    "lat": 13.008317,
+    "lng": 80.233444,
+    "full_name": "Anna University, Sardar Patel Road, CMWSSB Division 171, Ward 171, Zone 13 Adyar, Chennai Corporation, Chennai, Tamil Nadu, 600025, India"
+  },
+  "loyola college": {
+    "lat": 13.061703,
+    "lng": 80.234612,
+    "full_name": "Loyola College, Nelson Manickam Road, CMWSSB Division 110, Ward 110, Zone 9 Teynampet, Chennai Corporation, Chennai, Tamil Nadu, 600034, India"
+  },
+  "mcc": {
+    "lat": 13.07138,
+    "lng": 80.236847,
+    "full_name": "Madras Christian College Higher Secondary School, Pachaiyappas College Hostel Road, CMWSSB Division 107, Ward 107, Zone 8 Anna Nagar, Chennai Corporation, Chennai, Tamil Nadu, 600010, India"
+  },
+  "madras christian college": {
+    "lat": 13.07138,
+    "lng": 80.236847,
+    "full_name": "Madras Christian College Higher Secondary School, Pachaiyappas College Hostel Road, CMWSSB Division 107, Ward 107, Zone 8 Anna Nagar, Chennai Corporation, Chennai, Tamil Nadu, 600010, India"
+  },
+  "presidency college": {
+    "lat": 13.059021,
+    "lng": 80.281383,
+    "full_name": "Presidency College, Chennai, Kamarajar Salai, CMWSSB Division 114, Ward 114, Zone 9 Teynampet, Chennai Corporation, Chennai, Tamil Nadu, 600005, India"
+  },
+  "dg vaishnav": {
+    "lat": 13.074073,
+    "lng": 80.212743,
+    "full_name": "DG Vaishnav College, Gandhi Road, CMWSSB Division 105, Ward 105, Zone 8 Anna Nagar, Chennai Corporation, Chennai, Tamil Nadu, 600106, India"
+  },
+  "ethiraj college": {
+    "lat": 13.06449,
+    "lng": 80.258958,
+    "full_name": "Ethiraj College, Ethiraj Salai, CMWSSB Division 61, Ward 61, Zone 5 Royapuram, Chennai Corporation, Chennai, Tamil Nadu, 600008, India"
+  },
+  "srm university": {
+    "lat": 13.051637,
+    "lng": 80.210987,
+    "full_name": "SRM University - City Campus, Bajanai Koil 1st Street, CMWSSB Division 130, Ward 130, Zone 10 Kodambakkam, Chennai Corporation, Chennai, Tamil Nadu, 600026, India"
+  },
+  "vit chennai": {
+    "lat": 12.842946,
+    "lng": 80.15541,
+    "full_name": "Vellore Institute of Technology - Chennai, Vandalur - Mambakkam - Kelambakkam Road, Chennai Corporation, Tiruporur, Chengalpattu, Tamil Nadu, 600127, India"
+  },
+  "madras university": {
+    "lat": 13.066007,
+    "lng": 80.282842,
+    "full_name": "University of Madras (Chepauk), Wallajah Road, CMWSSB Division 114, Ward 114, Zone 9 Teynampet, Chennai Corporation, Chennai, Tamil Nadu, 600005, India"
+  },
+  "chennai north": {
+    "lat": 13.05042,
+    "lng": 77.492773,
+    "full_name": "Bangalore - Nelamangala Expressway, Dodda Bidarakallu, Bengaluru West City Corporation, Bengaluru, Bangalore North, Bengaluru Urban, Karnataka, 560073, India"
+  },
+  "chennai south": {
+    "lat": 12.920842,
+    "lng": 77.643834,
+    "full_name": "Outer Ring Road, Sector 4, HSR Layout, Bengaluru South City Corporation, Bengaluru, Bangalore South, Bengaluru Urban, Karnataka, 560102, India"
+  },
+  "north chennai": {
+    "lat": 13.05042,
+    "lng": 77.492773,
+    "full_name": "Bangalore - Nelamangala Expressway, Dodda Bidarakallu, Bengaluru West City Corporation, Bengaluru, Bangalore North, Bengaluru Urban, Karnataka, 560073, India"
+  },
+  "south chennai": {
+    "lat": 12.920842,
+    "lng": 77.643834,
+    "full_name": "Outer Ring Road, Sector 4, HSR Layout, Bengaluru South City Corporation, Bengaluru, Bangalore South, Bengaluru Urban, Karnataka, 560102, India"
+  },
+  "chennai": {
+    "lat": 13.083694,
+    "lng": 80.270186,
+    "full_name": "Chennai Corporation, Chennai, Tamil Nadu, India"
+  },
+  "kancheepuram": {
+    "lat": 12.879605,
+    "lng": 79.704276,
+    "full_name": "Kancheepuram, Kanchipuram, Tamil Nadu, India"
+  },
+  "tiruvallur district": {
+    "lat": 13.139422,
+    "lng": 79.907084,
+    "full_name": "Tiruvallur, Thiruvallur, Tamil Nadu, 602001, India"
+  }
+}

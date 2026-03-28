@@ -1,0 +1,15 @@
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+backend/models/*.pkl
+backend/data/raw/
+backend/data/processed/
+notebooks/
+node_modules/
+frontend/dist/
+frontend/.vite/
+.DS_Store
+*.log
