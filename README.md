@@ -14,7 +14,7 @@ pinned: false
 
 CrisisLens is an end-to-end decision support system that ingests social media text during natural disasters, filters noise, deduplicates reports, extracts and geocodes locations, and surfaces actionable incident intelligence on a live tactical dashboard for emergency commanders.
 
-![CrisisLens War Room](https://img.shields.io/badge/Status-Production%20Ready-brightgreen) ![Python](https://img.shields.io/badge/Python-3.11-blue) ![React](https://img.shields.io/badge/React-18-blue) ![FastAPI](https://img.shields.io/badge/FastAPI-0.111-green) ![License](https://img.shields.io/badge/License-MIT-yellow)
+![Python](https://img.shields.io/badge/Python-3.11-blue) ![React](https://img.shields.io/badge/React-18-blue) ![FastAPI](https://img.shields.io/badge/FastAPI-0.111-green) ![License](https://img.shields.io/badge/License-MIT-yellow)
 
 ---
 
