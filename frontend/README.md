@@ -252,4 +252,4 @@ npm run lint     # Run ESLint
 }
 ```
 
-Build tool: Vite 5. No state management library — React's built-in `useState` and `useEffect` are sufficient for this application's complexity.
+Build tool: Vite 5. No state management library — React's built-in `useState` and `useEffect` are sufficient for this application's complexity
