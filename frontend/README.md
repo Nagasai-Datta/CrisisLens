@@ -1,12 +1,12 @@
 # CrisisLens — Frontend
 
-React War Room dashboard. Three live-linked zones — incident feed, tactical map, and commander's report — all updating in real time via polling.
+React dashboard with three live-linked panels — an incident feed, a map, and a situation summary — all updating in real time via polling.
 
 ---
 
 ## Overview
 
-The frontend is a React 18 single-page application built with Vite. It polls the FastAPI backend every 3 seconds for updated cluster data and renders the results across three synchronised zones. No business logic lives in the frontend — it displays what the pipeline produces.
+The frontend is a React 18 single-page application built with Vite. It polls the FastAPI backend every 3 seconds for updated cluster data and renders the results across three synchronised panels. No business logic lives in the frontend — it displays what the pipeline produces.
 
 ---
 
@@ -16,19 +16,19 @@ The frontend is a React 18 single-page application built with Vite. It polls the
 frontend/
 ├── src/
 │   ├── App.jsx                     # Root component — owns all shared state
-│   ├── App.css                     # War Room grid layout
+│   ├── App.css                     # Dashboard grid layout
 │   ├── index.css                   # Global dark theme variables
 │   ├── main.jsx                    # Entry point — mounts React, imports Leaflet CSS
 │   └── components/
 │       ├── ControlSidebar.jsx      # Left panel — health, upload, urgency counts
 │       ├── ControlSidebar.css
-│       ├── ClusterFeed.jsx         # Zone A — scrollable incident card list
+│       ├── ClusterFeed.jsx         # Incident card list
 │       ├── ClusterFeed.css
 │       ├── ClusterCard.jsx         # Individual incident card with expand + resolve
 │       ├── ClusterCard.css
-│       ├── TacticalMap.jsx         # Zone B — Leaflet map with incident dots
+│       ├── TacticalMap.jsx         # Map panel — Leaflet map with incident dots
 │       ├── TacticalMap.css
-│       ├── CommandersReport.jsx    # Zone C — BART situation summary
+│       ├── CommandersReport.jsx    # Summary panel — BART situation summary
 │       └── CommandersReport.css
 ├── public/
 │   └── favicon.svg
@@ -39,24 +39,22 @@ frontend/
 
 ---
 
-## War Room Layout
+## Layout
 
 ```
 ┌─────────────┬──────────────────────┬────────────────────┐
 │             │                      │                    │
-│  SIDEBAR    │   ZONE A             │   ZONE B           │
-│             │   Cluster Feed       │   Tactical Map     │
-│  Pipeline   │                      │                    │
-│  status     │   Scrollable list    │   Leaflet map      │
-│             │   of incident cards  │   one dot per      │
-│  Urgency    │                      │   cluster          │
-│  counts     │   Click card →       │                    │
-│             │   highlights map dot │   Click dot →      │
-│  File       │                      │   scrolls to card  │
-│  upload     ├──────────────────────┴────────────────────┤
-│             │   ZONE C — Commander's Report              │
-│             │   BART-generated situation summary         │
-│             │   Auto-refreshes every 5 minutes          │
+│  SIDEBAR    │   Incident Feed      │   Map              │
+│             │                      │                    │
+│  Pipeline   │   Scrollable list    │   Leaflet map,     │
+│  status     │   of incident cards  │   one dot per      │
+│             │                      │   incident         │
+│  Urgency    │   Click card →       │                    │
+│  counts     │   highlights map dot │   Click dot →      │
+│             │                      │   scrolls to card  │
+│  File       ├──────────────────────┴────────────────────┤
+│  upload     │   Situation Summary                        │
+│             │   BART-generated summary, refreshes ~15 min│
 └─────────────┴────────────────────────────────────────────┘
 ```
 
@@ -72,18 +70,18 @@ Owns all shared state and runs all polling intervals. Child components never fet
 
 - `clusters` — the active incident list, polled from `/api/clusters` every 3 seconds
 - `selectedClusterId` — which incident is highlighted (shared between map and feed)
-- `report` — BART summary, polled from `/api/report` every 5 minutes
-- `health` — model status, polled from `/api/health` every 10 seconds
+- `report` — the situation summary, polled from `/api/report`
+- `health` — model status, polled from `/api/health`
 
-**Cross-zone synchronisation:**
+**Cross-panel synchronisation:**
 
 ```javascript
-// One state variable drives both Zone A and Zone B
+// One state variable drives both the feed and the map
 const [selectedClusterId, setSelectedClusterId] = useState(null);
 
 // Map dot click → sets selectedClusterId
 // ClusterCard checks → isHighlighted={card.id === selectedClusterId}
-// Both zones re-render simultaneously
+// Both panels re-render simultaneously
 ```
 
 ---
@@ -94,47 +92,47 @@ Three sections:
 
 1. **Pipeline Status** — green/red dot per model from `/api/health`
 2. **Active Incidents** — count by urgency tier (CRITICAL / HIGH / MODERATE)
-3. **File Upload** — choose a `.txt` or `.csv` file, reads it client-side with FileReader API, sends lines to `/api/process`
+3. **File Upload** — choose a `.txt` or `.csv` file, read it client-side with the FileReader API, send lines to `/api/process`
 
-File reading happens entirely in the browser — no upload to a server. The extracted tweet lines are sent to the pipeline as a JSON array.
+File reading happens entirely in the browser — nothing is uploaded to a server. The extracted lines are sent to the pipeline as a JSON array.
 
 ---
 
 ### `ClusterCard.jsx` — Incident Card
 
-Displays one cluster with:
+Displays one incident with:
 
 - Urgency badge (CRITICAL / HIGH / MODERATE)
-- Location name from geocoder
-- Representative tweet (the most information-rich tweet in the cluster)
-- Tweet count and timestamps
-- **Expand toggle** — reveals all source tweets for fact-checking
-- **Resolve button** — calls `DELETE /api/clusters/{id}`, card disappears within 3 seconds via polling
+- Location name from the geocoder
+- The most information-rich post in the cluster, as a representative
+- Report count and timestamps
+- **Expand toggle** — reveals all source posts for verification
+- **Resolve button** — calls `DELETE /api/clusters/{id}`; the card disappears within 3 seconds via polling
 
 Uses `forwardRef` so `ClusterFeed` can call `scrollIntoView` when a map dot is clicked.
 
 ---
 
-### `TacticalMap.jsx` — Zone B
+### `TacticalMap.jsx` — Map Panel
 
 Leaflet map centred on Chennai (`[13.0827, 80.2707]`, zoom 11).
 
-- Uses CartoDB dark matter tiles — matches the dark theme without configuration
-- One `CircleMarker` per cluster that has valid coordinates
-- Dot radius scales with `tweet_count` (more reports = bigger dot)
+- Uses CartoDB dark-matter tiles — matches the dark theme with no extra configuration
+- One `CircleMarker` per incident that has valid coordinates
+- Dot radius scales with report count (more reports = bigger dot)
 - Dot colour encodes urgency (red = CRITICAL, orange = HIGH, blue = MODERATE)
-- Selected cluster dot gets a white border + larger radius
-- Clicking a dot calls `onDotClick(cluster_id)` which sets `selectedClusterId` in App
+- The selected incident's dot gets a white border and a larger radius
+- Clicking a dot calls `onDotClick(cluster_id)`, which sets `selectedClusterId` in App
 
-**Important:** Clusters with `lat: null` (location not found in gazetteer) are silently skipped — no dot placed.
+**Note:** incidents with `lat: null` (location not found in the gazetteer) are silently skipped — no dot is placed.
 
-**Leaflet CSS:** Must be imported in `main.jsx` before any react-leaflet component renders. Missing it breaks map layout and controls.
+**Leaflet CSS** must be imported in `main.jsx` before any react-leaflet component renders. Missing it breaks the map layout and controls.
 
 ---
 
-### `CommandersReport.jsx` — Zone C
+### `CommandersReport.jsx` — Summary Panel
 
-Displays the BART-generated situation report. Shows a placeholder until the first report is generated (5 minutes after the first tweet submission). Polling is handled in App.jsx — this component only renders what it receives as props.
+Displays the BART-generated situation summary. Shows a placeholder until the first summary is generated (the backend regenerates it roughly every 15 minutes). Polling is handled in `App.jsx`; this component only renders what it receives as props.
 
 ---
 
@@ -150,8 +148,7 @@ useEffect(() => {
 }, [fetchClusters]);
 ```
 
-**Why polling instead of WebSockets:**
-HuggingFace Spaces free tier does not support WebSocket connections. Polling at 3-second intervals is imperceptible in a disaster response context and works identically in local development and production.
+Polling at 3-second intervals is simple, reliable, and behaves identically in local development and production. It also means the frontend transparently handles a backend that is waking from sleep — failed fetches simply show the components as offline until the next successful poll.
 
 ---
 
@@ -163,14 +160,14 @@ The UI uses CSS custom properties defined in `index.css`. All colours, spacing, 
 :root {
   --bg-primary: #0f0f13; /* main background */
   --bg-secondary: #17171f; /* cards and panels */
-  --accent: #e94560; /* brand red */
+  --accent: #e94560; /* brand accent */
   --critical: #e74c3c; /* CRITICAL incidents */
   --high: #e67e22; /* HIGH incidents */
   --moderate: #3498db; /* MODERATE incidents */
 }
 ```
 
-**Design direction:** Modern dark — think Vercel dashboard or Linear app. Clean cards, subtle borders, colour used purposefully for urgency communication. Not a military terminal aesthetic.
+**Design direction:** modern and dark — clean cards, subtle borders, colour used purposefully to communicate urgency.
 
 ---
 
@@ -195,15 +192,13 @@ Opens at `http://localhost:5173`.
 
 ## Environment Variables
 
-Create `frontend/.env.production` for production builds:
+For production builds, `frontend/.env.production` sets the backend URL:
 
 ```
-VITE_API_URL=https://YOUR_HF_USERNAME-crisislens-backend.hf.space
+VITE_API_URL=https://nagasaidatta-crisislens-backend-deployment.hf.space
 ```
 
-In development, `VITE_API_URL` is not set — the app defaults to `http://localhost:8000`.
-
-The variable is accessed in components as:
+In development the variable is unset and the app defaults to `http://localhost:8000`. It is read in components as:
 
 ```javascript
 const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:8000";
@@ -211,32 +206,25 @@ const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:8000";
 
 ---
 
-## Deployment (Vercel)
+## Deployment (Azure Static Web Apps)
 
-The frontend deploys to Vercel free tier as a static build.
+The frontend is deployed to **Azure Static Web Apps** as a static Vite build, via a GitHub Actions workflow in `.github/workflows/`.
 
-### Steps
+- **App location:** `./frontend` **Output location:** `dist`
+- The backend URL is baked in at build time from `frontend/.env.production`
+- Every push to `main` triggers an automatic rebuild and redeploy to the global CDN
 
-1. Go to [vercel.com](https://vercel.com) and sign in with GitHub
-2. Click **New Project** → import the `crisislens` repository
-3. Set **Root Directory** to `frontend`
-4. Add environment variable:
-   ```
-   VITE_API_URL = https://YOUR_HF_USERNAME-crisislens-backend.hf.space
-   ```
-5. Click **Deploy**
-
-Vercel detects Vite automatically. Build completes in ~60 seconds. Subsequent pushes to `main` auto-deploy.
+Live dashboard: https://mango-desert-052139500.4.azurestaticapps.net
 
 ---
 
 ## Available Scripts
 
 ```bash
-npm run dev      # Start development server at localhost:5173
-npm run build    # Production build → dist/
-npm run preview  # Preview production build locally
-npm run lint     # Run ESLint
+npm run dev      # development server at localhost:5173
+npm run build    # production build → dist/
+npm run preview  # preview the production build locally
+npm run lint     # run ESLint
 ```
 
 ---
@@ -252,4 +240,4 @@ npm run lint     # Run ESLint
 }
 ```
 
-Build tool: Vite 5. No state management library — React's built-in `useState` and `useEffect` are sufficient for this application's complexity
+Build tool: Vite 5. No state-management library — React's built-in `useState` and `useEffect` are sufficient for this application's complexity.
