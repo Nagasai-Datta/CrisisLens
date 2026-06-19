@@ -1,285 +1,158 @@
----
-title: CrisisLens Backend
-emoji: 🚨
-colorFrom: red
-colorTo: blue
-sdk: docker
-app_port: 7860
-pinned: false
----
-
 # CrisisLens
 
-**Real-time crisis intelligence for natural disaster response.**
-
-CrisisLens is an end-to-end decision support system that ingests social media text during natural disasters, filters noise, deduplicates reports, extracts and geocodes locations, and surfaces actionable incident intelligence on a live tactical dashboard for emergency commanders.
+**Real-time crisis intelligence from social media for disaster response.**
 
 ![Python](https://img.shields.io/badge/Python-3.11-blue) ![React](https://img.shields.io/badge/React-18-blue) ![FastAPI](https://img.shields.io/badge/FastAPI-0.111-green) ![License](https://img.shields.io/badge/License-MIT-yellow)
 
----
-
-## What It Does
-
-During a flood or disaster, thousands of tweets are posted per minute. Most are noise. A small fraction contain actionable rescue requests. CrisisLens automatically:
-
-- **Filters** irrelevant tweets using a trained SVM classifier (under 1ms per tweet)
-- **Groups** semantically similar reports about the same incident using MiniLM embeddings and DBSCAN clustering
-- **Extracts** location names from incident reports using BERT Named Entity Recognition
-- **Geocodes** locations to GPS coordinates via a pre-built Chennai gazetteer
-- **Generates** an executive situation report every 5 minutes using BART summarisation
-- **Displays** everything on a live War Room dashboard — tactical map, incident feed, and commander's report
+CrisisLens is an end-to-end pipeline that reads social-media posts during a natural disaster, filters out the noise, groups duplicate reports into distinct incidents, pins them to a map, and summarises the overall situation — turning a flood of raw posts into a short, structured view of what is happening and where.
 
 ---
 
 ## Live Demo
 
-| Component          | URL                                                         |
-| ------------------ | ----------------------------------------------------------- |
-| War Room Dashboard | [crisislens.vercel.app](https://crisislens.vercel.app)      |
-| Backend API        | [huggingface.co/spaces/...](https://huggingface.co/spaces/) |
-| API Documentation  | `<backend-url>/docs`                                        |
+**▶ Access the live dashboard here: https://mango-desert-052139500.4.azurestaticapps.net**
+
+| Resource           | Link                                                             |
+| ------------------ | ---------------------------------------------------------------- |
+| Live dashboard     | https://mango-desert-052139500.4.azurestaticapps.net             |
+| Backend API        | https://nagasaidatta-crisislens-backend-deployment.hf.space      |
+| API docs (Swagger) | https://nagasaidatta-crisislens-backend-deployment.hf.space/docs |
+
+> **Note on first load:** the backend runs on a free HuggingFace Space that sleeps after periods of inactivity. If the dashboard shows its components as offline when you first open it, the backend is simply waking up — this takes about a minute, after which the status turns green automatically. No action is required.
 
 ---
 
-## Pipeline Architecture
+## Why
+
+Chennai floods in some years badly enough to disrupt the city. In events like the 2015 floods, the bottleneck was not a lack of information — social media carried thousands of real-time reports: roads underwater, people stranded, requests for help. The hard part was the manual effort of separating actionable signal from the sheer volume of noise, fast enough to act on it.
+
+CrisisLens is a prototype that automates that filtering and aggregation step, so that a stream of unstructured posts becomes a short list of distinct, located incidents.
+
+---
+
+## What It Does
+
+- **Filters** irrelevant posts using a trained SVM classifier (sub-millisecond per post)
+- **Groups** semantically similar reports about the same incident using MiniLM sentence embeddings and DBSCAN clustering
+- **Extracts** location names from incident reports using BERT Named Entity Recognition
+- **Resolves** those locations to coordinates via an offline, pre-built Chennai gazetteer
+- **Summarises** the active situation every 15 minutes using BART abstractive summarisation
+- **Displays** everything on a live dashboard — an incident feed, a map view, and a summary report
+
+---
+
+## How It Works
+
+Data flows in one direction. Each stage does one job and passes its enriched output to the next.
 
 ```
-Raw Tweets
-    ↓
-[Bouncer]        TF-IDF + LinearSVC      — filters ~90% noise in < 1ms/tweet
-    ↓
-[Deduplicator]   MiniLM + DBSCAN         — groups duplicate reports into clusters
-    ↓
-[Detective]      dslim/bert-base-NER     — extracts location names from tweets
-    ↓
-[Geocoder]       Chennai Gazetteer JSON  — maps location names to lat/lng
-    ↓
-[Editor]         facebook/bart-large-cnn — generates situation report (every 5 min)
-    ↓
-War Room Dashboard (React + Leaflet + 3-second polling)
+Raw posts
+    │
+[Bouncer]        TF-IDF + LinearSVC        filters ~90% noise in < 1 ms/post
+    │
+[Deduplicator]   MiniLM + DBSCAN           groups duplicate reports into incidents
+    │
+[Detective]      dslim/bert-base-NER       extracts location names
+    │
+[Geocoder]       Chennai gazetteer (JSON)  maps location names to lat/lng
+    │
+[Editor]         facebook/bart-large-cnn   writes a situation summary (every 15 min)
+    │
+Dashboard        React + Leaflet, polling the API every 3 seconds
 ```
 
-Each stage is a self-contained Python module. Data flows in one direction only. No stage reaches backwards.
+Each stage is a self-contained Python module; no stage reaches backwards.
+
+---
+
+## Results
+
+Measured on the trained noise-filter (the Bouncer) and the geocoding layer:
+
+| Metric                           | Value                |
+| -------------------------------- | -------------------- |
+| Disaster-class F1 (noise filter) | 0.91                 |
+| ROC-AUC                          | 0.92                 |
+| 5-fold cross-validation accuracy | ~86.5%               |
+| Classifier throughput            | 75,000+ posts/second |
+| Trained classifier size on disk  | 3.5 MB               |
+| Chennai gazetteer coverage       | 171 locations        |
+
+The classifier is trained on a combination of the Kaggle Disaster Tweets dataset and CrisisLexT26, which together provide both diverse, metaphorical examples and authentic crisis language from real events.
 
 ---
 
 ## Technology Stack
 
-| Layer            | Technology                                       | Purpose                               |
-| ---------------- | ------------------------------------------------ | ------------------------------------- |
-| Frontend         | React 18 + Vite                                  | War Room dashboard                    |
-| Maps             | react-leaflet + Leaflet.js                       | Tactical incident map                 |
-| Backend          | FastAPI + Uvicorn                                | API server and pipeline orchestration |
-| Noise Filter     | scikit-learn TF-IDF + LinearSVC                  | Sub-millisecond tweet classification  |
-| Deduplication    | sentence-transformers MiniLM-L6-v2 + DBSCAN      | Semantic incident clustering          |
-| Location NER     | dslim/bert-base-NER (HuggingFace)                | Named entity extraction               |
-| Geocoding        | Custom Chennai Gazetteer JSON                    | Offline coordinate resolution         |
-| Summarisation    | facebook/bart-large-cnn (HuggingFace API)        | Situation report generation           |
-| Containerisation | Docker + Docker Compose                          | Local development and HF deployment   |
-| Deployment       | HuggingFace Spaces (backend) + Vercel (frontend) | Free cloud hosting                    |
+| Layer            | Technology                                                      | Purpose                               |
+| ---------------- | --------------------------------------------------------------- | ------------------------------------- |
+| Frontend         | React 18 + Vite                                                 | Dashboard UI                          |
+| Map              | react-leaflet + Leaflet.js                                      | Incident map                          |
+| Backend          | FastAPI + Uvicorn                                               | API server and pipeline orchestration |
+| Noise filter     | scikit-learn TF-IDF + LinearSVC                                 | Sub-millisecond post classification   |
+| Deduplication    | sentence-transformers MiniLM-L6-v2 + DBSCAN                     | Semantic incident clustering          |
+| Location NER     | dslim/bert-base-NER (HuggingFace)                               | Named-entity extraction               |
+| Geocoding        | Custom Chennai gazetteer (JSON)                                 | Offline coordinate resolution         |
+| Summarisation    | facebook/bart-large-cnn (HuggingFace Inference API)             | Situation summary generation          |
+| Containerisation | Docker                                                          | Reproducible backend image            |
+| Hosting          | HuggingFace Spaces (backend) + Azure Static Web Apps (frontend) | Free cloud hosting                    |
+
+---
+
+## Architecture & Deployment
+
+The backend is containerised with Docker and deployed to a free **HuggingFace Space**. The MiniLM and BERT models are baked into the image at build time, so there is no model download at runtime — the container starts cleanly even on a cold boot. The Space sleeps when idle and wakes automatically on the first incoming request.
+
+The frontend is a static React build hosted on **Azure Static Web Apps**, served from a global CDN and deployed automatically from this repository. It polls the backend every three seconds and reflects the live state of the incident store. The two halves communicate over REST; CORS on the backend is restricted to the deployed frontend origin.
 
 ---
 
 ## Repository Structure
 
 ```
-crisislens/
-├── backend/                    # FastAPI server + ML pipeline
+CrisisLens/
+├── backend/
 │   ├── api/
-│   │   ├── main.py             # App entry point, CORS, lifespan
-│   │   └── routes/
-│   │       └── pipeline.py     # REST endpoints
-│   ├── components/             # Pipeline components (one file = one job)
-│   │   ├── bouncer.py          # Runtime noise filter
-│   │   ├── deduplicator.py     # Semantic clustering
-│   │   ├── detective.py        # BERT NER location extraction
-│   │   ├── geocoder.py         # Gazetteer coordinate lookup
-│   │   └── editor.py           # BART situation report generation
-│   ├── scripts/                # One-time setup scripts (run offline)
-│   │   ├── prepare_data.py     # Merge Kaggle + CrisisLexT26 datasets
-│   │   ├── train_bouncer.py    # Train and save TF-IDF + SVM
-│   │   ├── populate_gazetteer.py # Build Chennai coordinate JSON
-│   │   └── download_models.py  # Pre-cache HuggingFace models
-│   ├── data/
-│   │   └── gazetteers/
-│   │       └── chennai_gazetteer.json  # 171 Chennai locations with coordinates
-│   ├── requirements.txt
-│   └── Dockerfile              # HuggingFace Spaces deployment
-├── frontend/                   # React War Room dashboard
-│   ├── src/
-│   │   ├── App.jsx             # Root component, shared state, polling
-│   │   ├── components/
-│   │   │   ├── ControlSidebar  # Model health + file upload
-│   │   │   ├── ClusterFeed     # Incident card list (Zone A)
-│   │   │   ├── ClusterCard     # Individual incident card
-│   │   │   ├── TacticalMap     # Leaflet map with incident dots (Zone B)
-│   │   │   └── CommandersReport # BART summary display (Zone C)
-│   └── package.json
-├── docker-compose.yml          # Local development — one command startup
-└── README.md
+│   │   ├── main.py              # App entry point, CORS, model loading
+│   │   └── routes/pipeline.py   # /api/clusters, /api/process, /api/report, /api/health
+│   ├── components/
+│   │   ├── bouncer.py           # TF-IDF + LinearSVC noise filter
+│   │   ├── deduplicator.py      # MiniLM + DBSCAN clustering
+│   │   ├── detective.py         # BERT NER location extraction
+│   │   ├── geocoder.py          # Gazetteer lookup + fuzzy matching
+│   │   └── editor.py            # BART situation summary (via HF API)
+│   ├── scripts/                 # One-time setup: data prep, training, gazetteer, model pre-download
+│   ├── models/                  # Trained .pkl classifier files
+│   ├── data/gazetteers/         # Chennai gazetteer JSON
+│   └── requirements.txt
+├── frontend/                    # Vite + React dashboard
+├── figures/                     # Evaluation plots
+└── results/                     # Metrics and evaluation output
 ```
 
 ---
 
-## Getting Started
+## Running Locally
 
-### Prerequisites
-
-- Python 3.11
-- Node.js 18+
-- Docker + Docker Compose (recommended)
-- ~2GB disk space for ML models
-
-### 1. Clone the repository
+**Backend**
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/crisislens.git
-cd crisislens
+cd backend
+python -m venv venv && source venv/bin/activate
+pip install -r requirements.txt
+python -m scripts.download_models          # caches MiniLM + BERT once
+export HF_API_TOKEN=your_hf_token          # for the BART summary step
+uvicorn api.main:app --reload --port 8000
 ```
 
-### 2. One-time setup (run these once, not on every startup)
-
-Download the training datasets:
-
-- **Kaggle Disaster Tweets**: Download `train.csv` from [kaggle.com/competitions/nlp-getting-started](https://kaggle.com/competitions/nlp-getting-started) → place in `backend/data/raw/kaggle/`
-- **CrisisLexT26**: Download from [crisislex.org](https://crisislex.org/data-collections.html) → place 26 event folders in `backend/data/raw/crisislex/`
-
-Then run the setup pipeline:
-
-```bash
-# Activate Python environment
-python3.11 -m venv venv
-source venv/bin/activate
-
-# Install dependencies
-pip install -r backend/requirements.txt
-
-# Download and cache ML models locally
-python backend/scripts/download_models.py
-
-# Merge and clean both datasets
-python backend/scripts/prepare_data.py
-
-# Train TF-IDF + SVM classifier (target F1 ≥ 0.85)
-python backend/scripts/train_bouncer.py
-
-# Build Chennai coordinate gazetteer (~10 minutes, crash-safe)
-python backend/scripts/populate_gazetteer.py
-```
-
-### 3. Configure environment
-
-Create `backend/.env`:
-
-```
-HF_API_TOKEN=hf_your_token_here
-```
-
-Get your free token at [huggingface.co/settings/tokens](https://huggingface.co/settings/tokens). Only the **Make calls to Inference Providers** permission is needed.
-
-### 4. Start the backend
-
-```bash
-docker compose up
-```
-
-That's it. Docker handles everything — no manual venv activation, no uvicorn command. Backend runs at `http://localhost:8000`.
-
-First run takes a few minutes to build the image. Every subsequent run starts in seconds.
-
-> **Without Docker:** `source venv/bin/activate && uvicorn backend.api.main:app --reload --port 8000`
-
-### 5. Start the frontend
+**Frontend**
 
 ```bash
 cd frontend
-npm install    # first time only
-npm run dev
+npm install
+npm run dev                                # serves on http://localhost:5173
 ```
 
-Visit `http://localhost:5173` to open the War Room.
+The frontend reads its backend URL from `VITE_API_URL` (defaults to `http://localhost:8000`).
 
 ---
-
-## Daily Development Workflow
-
-```bash
-# Terminal 1 — start backend
-docker compose up
-
-# Terminal 2 — start frontend
-cd frontend && npm run dev
-
-# Stop backend when done
-docker compose down
-```
-
----
-
-## Usage
-
-1. Open the War Room at `http://localhost:5173`
-2. Verify all four pipeline components show green in the sidebar
-3. Upload a `.txt` or `.csv` file of tweets (one per line) using the file picker
-4. Click **Run Pipeline**
-5. Incident clusters appear on the map and in the feed within seconds
-6. The Commander's Report auto-generates every 5 minutes
-7. Click **✓ Resolve** on any card to dismiss a handled incident
-
-### Sample Tweet File
-
-A demo CSV is provided at `backend/data/demo/chennai_flood_tweets.csv` with 30 tweets across 10 simulated Chennai flood incidents including realistic noise tweets.
-
----
-
-## API Reference
-
-| Method   | Endpoint             | Description                        |
-| -------- | -------------------- | ---------------------------------- |
-| `POST`   | `/api/process`       | Submit tweets, run full pipeline   |
-| `GET`    | `/api/clusters`      | Get current active cluster list    |
-| `DELETE` | `/api/clusters/{id}` | Resolve (dismiss) a single cluster |
-| `DELETE` | `/api/clusters`      | Clear all clusters                 |
-| `GET`    | `/api/report`        | Get latest BART situation report   |
-| `GET`    | `/api/health`        | Per-model health status            |
-| `GET`    | `/docs`              | Interactive Swagger UI             |
-
----
-
-## Deployment
-
-CrisisLens deploys entirely for free:
-
-- **Backend** → HuggingFace Spaces (Docker, 16GB RAM — required for BERT + MiniLM)
-- **Frontend** → Vercel (static build, global CDN)
-
-See [`backend/README.md`](backend/README.md) for the full deployment walkthrough.
-
----
-
-## Training Data
-
-The Bouncer classifier is trained on a combination of two public datasets:
-
-| Dataset                    | Size                            | Source                                                                                             |
-| -------------------------- | ------------------------------- | -------------------------------------------------------------------------------------------------- |
-| Kaggle NLP Disaster Tweets | ~7,600 tweets                   | [kaggle.com/competitions/nlp-getting-started](https://kaggle.com/competitions/nlp-getting-started) |
-| CrisisLexT26               | ~27,000 tweets across 26 events | [crisislex.org](https://crisislex.org)                                                             |
-
-Training data is not included in this repository. Both datasets are publicly available and free to download.
-
----
-
-## License
-
-MIT License — see [LICENSE](LICENSE) for details.
-
----
-
-## Acknowledgements
-
-- [dslim/bert-base-NER](https://huggingface.co/dslim/bert-base-NER) — BERT NER model
-- [sentence-transformers/all-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2) — Sentence embeddings
-- [facebook/bart-large-cnn](https://huggingface.co/facebook/bart-large-cnn) — Summarisation
-- [CrisisLex](https://crisislex.org) — Crisis tweet dataset
-- [Leaflet.js](https://leafletjs.com) + [OpenStreetMap](https://www.openstreetmap.org) — Mapping
