@@ -42,7 +42,7 @@ MAX_INPUT_TOKENS = 900
 WORDS_PER_TOKEN = 0.75
 
 # How often to generate a new report (seconds)
-REPORT_INTERVAL_SECONDS = 10   # 5 minutes
+REPORT_INTERVAL_SECONDS = 900   # 15 minutes
 
 
 # =============================================================================
